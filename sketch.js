@@ -14,6 +14,16 @@ function draw() {
   circle(360, 360, 660);
   pop();
 
+  //  Outer Circle : District border
+  push();
+  stroke(255);
+  strokeWeight(1);
+  noFill();
+  circle(360, 360, 647);
+  circle(360, 360, 593);
+  circle(360, 360, 585);
+  pop();
+
   //  Outer Circle : BezierGlyph
   push();
   stroke(255);
