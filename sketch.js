@@ -6,6 +6,27 @@ function draw() {
   randomSeed(42);
   background(0);
 
+  //  Dual square
+  push();
+  stroke(255);
+  fill(0);
+  for (var i = 1; i < 3; i++) {
+    var offset = i * PI / 4;
+    beginShape();
+    for (var angle = 0; angle < TAU; angle += PI / 2) {
+      var adjustAngle = angle + offset;
+      vertex(cos(adjustAngle) * 210 + 360, sin(adjustAngle) * 210 + 360);
+    }
+    beginContour();
+    for (var angle = TAU; angle > 0; angle -= PI / 2) {
+      var adjustAngle = angle + offset;
+      vertex(cos(adjustAngle) * 195 + 360, sin(adjustAngle) * 195 + 360);
+    }
+    endContour();
+    endShape();
+  }
+  pop();
+
   //  Outer Circle : Border
   push();
   stroke(255);
