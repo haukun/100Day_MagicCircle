@@ -72,4 +72,15 @@ function draw() {
     pop();
   }
   pop();
+
+  //  Elementals gate
+  push();
+  stroke(255);
+  fill(0);
+  for (var angle = 0; angle < TAU; angle += PI / 2) {
+    strokeWeight(3)
+    circle(cos(angle) * 310 + 360, sin(angle) * 310 + 360, 75);
+  }
+  pop();
+
 }
