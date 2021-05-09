@@ -108,6 +108,14 @@ function draw() {
       angle - PI / 4 + PI,
       angle + PI / 4 + PI
     );
+    arc(
+      baseX + cos(angle) * 45,
+      baseY + sin(angle) * 45,
+      40,
+      40,
+      angle - PI / 4 + PI,
+      angle + PI / 4 + PI
+    );
   }
   pop();
 }
