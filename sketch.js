@@ -134,4 +134,25 @@ function draw() {
     );
   }
   pop();
+
+  //  Water circle
+  push();
+  fill(0);
+  noStroke();
+  var baseX = cos((TAU * 2) / 4) * 310 + 360;
+  var baseY = sin((TAU * 2) / 4) * 310 + 360;
+
+  circle(baseX, baseY, 65);
+  drawingContext.clip();
+
+  noFill();
+  stroke(255);
+  for (angle = 0; angle < TAU; angle += PI / 4) {
+    push();
+    translate(baseX + cos(angle) * 30, baseY + sin(angle) * 30);
+    rotate(angle);
+    ellipse(0, 0, 15, 5);
+    pop();
+  }
+  pop();
 }
