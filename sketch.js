@@ -153,6 +153,14 @@ function draw() {
     rotate(angle);
     ellipse(0, 0, 15, 5);
     pop();
+    push();
+    translate(
+      baseX + cos(angle + PI / 8) * 30,
+      baseY + sin(angle + PI / 8) * 30
+    );
+    rotate(angle + PI / 8 + PI / 2);
+    ellipse(0, 0, 12, 4);
+    pop();
   }
   pop();
 }
