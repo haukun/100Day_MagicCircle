@@ -161,6 +161,14 @@ function draw() {
     rotate(angle + PI / 8 + PI / 2);
     ellipse(0, 0, 12, 4);
     pop();
+    push();
+    translate(
+      baseX + cos(angle + PI / 8) * 20,
+      baseY + sin(angle + PI / 8) * 20
+    );
+    rotate(angle + PI / 8 + PI / 2);
+    ellipse(0, 0, 9, 4);
+    pop();
   }
   pop();
 }
