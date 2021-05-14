@@ -169,6 +169,11 @@ function draw() {
     rotate(angle + PI / 8 + PI / 2);
     ellipse(0, 0, 9, 4);
     pop();
+    push();
+    translate(baseX + cos(angle) * 10, baseY + sin(angle) * 10);
+    rotate(angle);
+    ellipse(0, 0, 9, 3);
+    pop();
   }
   pop();
 }
