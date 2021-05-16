@@ -176,4 +176,29 @@ function draw() {
     pop();
   }
   pop();
+
+  //  Wind circle
+  push();
+  fill(0);
+  noStroke();
+  var baseX = cos(0) * 310 + 360;
+  var baseY = sin(0) * 310 + 360;
+
+  circle(baseX, baseY, 65);
+  drawingContext.clip();
+  noFill();
+  stroke(255);
+  for (angle = 0; angle < TAU; angle += PI / 4) {
+    bezier(
+      baseX + cos(angle) * 40,
+      baseY + sin(angle) * 40,
+      baseX + cos(angle + PI / 4) * 40,
+      baseY + sin(angle + PI / 4) * 40,
+      baseX + cos(angle - PI / 8) * 40,
+      baseY + sin(angle - PI / 8) * 40,
+      baseX + cos(angle) * 20,
+      baseY + sin(angle) * 20
+    );
+  }
+  pop();
 }
