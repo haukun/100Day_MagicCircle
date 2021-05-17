@@ -199,6 +199,17 @@ function draw() {
       baseX + cos(angle) * 20,
       baseY + sin(angle) * 20
     );
+    var shiftAngle = angle + PI / 8;
+    bezier(
+      baseX + cos(shiftAngle) * 30,
+      baseY + sin(shiftAngle) * 30,
+      baseX + cos(shiftAngle + PI / 4) * 30,
+      baseY + sin(shiftAngle + PI / 4) * 30,
+      baseX + cos(shiftAngle - PI / 8) * 30,
+      baseY + sin(shiftAngle - PI / 8) * 30,
+      baseX + cos(shiftAngle) * 10,
+      baseY + sin(shiftAngle) * 10
+    );
   }
   pop();
 }
