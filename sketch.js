@@ -220,6 +220,16 @@ function draw() {
       baseX + cos(angle) * 10,
       baseY + sin(angle) * 10
     );
+    bezier(
+      baseX + cos(shiftAngle) * 30,
+      baseY + sin(shiftAngle) * 30,
+      baseX + cos(shiftAngle - PI / 8) * 30,
+      baseY + sin(shiftAngle - PI / 8) * 30,
+      baseX + cos(shiftAngle + PI / 4) * 30,
+      baseY + sin(shiftAngle + PI / 4) * 30,
+      baseX,
+      baseY
+    );
   }
   pop();
 }
