@@ -232,4 +232,25 @@ function draw() {
     );
   }
   pop();
+
+  //  Earch circle
+  push();
+  fill(0);
+  noStroke();
+  var baseX = cos((TAU * 3) / 4) * 310 + 360;
+  var baseY = sin((TAU * 3) / 4) * 310 + 360;
+
+  circle(baseX, baseY, 65);
+  drawingContext.clip();
+  rectMode(CENTER);
+  noFill();
+  stroke(255);
+  for (angle = 0; angle < TAU; angle += PI / 4) {
+    push();
+    translate(baseX + cos(angle) * 30, baseY + sin(angle) * 30);
+    rotate(angle);
+    rect(0, 0, 20, 8);
+    pop();
+  }
+  pop();
 }
