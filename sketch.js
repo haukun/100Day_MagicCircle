@@ -251,6 +251,12 @@ function draw() {
     rotate(angle);
     rect(0, 0, 20, 8);
     pop();
+    var shiftAngle = angle + PI / 8;
+    push();
+    translate(baseX + cos(shiftAngle) * 25, baseY + sin(shiftAngle) * 25);
+    rotate(shiftAngle);
+    rect(0, 0, 25, 4);
+    pop();
   }
   pop();
 }
