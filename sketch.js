@@ -262,6 +262,11 @@ function draw() {
     rotate(angle);
     rect(0, 0, 10, 4);
     pop();
+    push();
+    translate(baseX + cos(shiftAngle) * 4, baseY + sin(shiftAngle) * 4);
+    rotate(shiftAngle);
+    rect(0, 0, 3, 1);
+    pop();
   }
   pop();
 }
