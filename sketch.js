@@ -73,6 +73,24 @@ function draw() {
   }
   pop();
 
+  //  Elementals path
+  push();
+  stroke(255);
+  noFill();
+  for (var angle = 0; angle < TAU; angle += PI / 2) {
+    var angle1 = angle - 0.128;
+    var angle2 = angle + 0.128;
+    triangle(
+      cos(angle) * 210 + 360,
+      sin(angle) * 210 + 360,
+      cos(angle1) * 290 + 360,
+      sin(angle1) * 290 + 360,
+      cos(angle2) * 290 + 360,
+      sin(angle2) * 290 + 360
+    );
+  }
+  pop();
+
   //  Elementals gate
   push();
   stroke(255);
