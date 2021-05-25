@@ -78,6 +78,7 @@ function draw() {
   stroke(255);
   noFill();
   for (var angle = 0; angle < TAU; angle += PI / 2) {
+    push();
     var angle1 = angle - 0.128;
     var angle2 = angle + 0.128;
     triangle(
@@ -88,6 +89,12 @@ function draw() {
       cos(angle2) * 290 + 360,
       sin(angle2) * 290 + 360
     );
+    drawingContext.clip();
+    for (i = 12; i > 0; i--) {
+      circle(cos(angle1) * 310 + 360, sin(angle1) * 310 + 360, 55 + i * 12);
+      circle(cos(angle2) * 310 + 360, sin(angle2) * 310 + 360, 55 + i * 12);
+    }
+    pop();
   }
   pop();
 
