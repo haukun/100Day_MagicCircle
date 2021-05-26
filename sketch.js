@@ -6,6 +6,19 @@ function draw() {
   randomSeed(42);
   background(0);
 
+  //  Regions area
+  push();
+  noFill();
+  stroke(255);
+  for (var angle = 0; angle < TAU; angle += PI / 2) {
+    circle(
+      cos(angle + PI / 4) * 250 + 360,
+      sin(angle + PI / 4) * 250 + 360,
+      60
+    );
+  }
+  pop();
+
   //  Dual square
   push();
   stroke(255);
