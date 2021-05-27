@@ -6,7 +6,7 @@ function draw() {
   randomSeed(42);
   background(0);
 
-  //  Regions area
+  //  Regions circle
   push();
   noFill();
   stroke(255);
@@ -16,6 +16,54 @@ function draw() {
       sin(angle + PI / 4) * 250 + 360,
       60
     );
+  }
+  pop();
+
+  //  Regions area
+  push();
+  noFill();
+  stroke(255);
+  var sign = 1;
+  var angleOffset = 0;
+  for (var angle = 0; angle < TAU; angle += PI / 4) {
+    var baseAngle = angle + angleOffset;
+    beginShape();
+    vertex(
+      cos(0.04 * sign + baseAngle) * 212 + 360,
+      sin(0.04 * sign + baseAngle) * 212 + 360
+    );
+    for (var arcAngle = 0; arcAngle < PI / 5; arcAngle += PI / 32) {
+      var resultArcAngle = arcAngle + 0.145;
+      vertex(
+        cos(resultArcAngle * sign + baseAngle) * 287 + 360,
+        sin(resultArcAngle * sign + baseAngle) * 287 + 360
+      );
+    }
+    for (
+      crescentAngle = 0;
+      crescentAngle < PI - 0.2;
+      crescentAngle += PI / 32
+    ) {
+      vertex(
+        cos((PI / 4) * sign + baseAngle) * 250 +
+          360 +
+          cos((-crescentAngle + PI / 5) * sign + baseAngle) * 37,
+        sin((PI / 4) * sign + baseAngle) * 250 +
+          360 +
+          sin((-crescentAngle + PI / 5) * sign + baseAngle) * 37
+      );
+    }
+    vertex(
+      cos((PI / 8) * sign + baseAngle) * 168 + 360,
+      sin((PI / 8) * sign + baseAngle) * 168 + 360
+    );
+    endShape(CLOSE);
+    sign = -sign;
+    if (sign == -1) {
+      angleOffset = PI / 4;
+    } else {
+      angleOffset = 0;
+    }
   }
   pop();
 
