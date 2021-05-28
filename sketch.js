@@ -17,6 +17,31 @@ function draw() {
       60
     );
   }
+
+  //  Regions circle - Plant symbol
+  translate(cos(PI + PI / 4) * 250 + 360, sin(PI + PI / 4) * 250 + 360);
+  rotate(PI / 4);
+  for (var angle = 0; angle < TAU; angle += PI / 2) {
+    push();
+    rotate(angle);
+    curve(0, 90, 0, 0, 25, 0, 25, 30);
+    curve(0, -90, 0, 0, 25, 0, 25, -30);
+    pop();
+  }
+  for (var angle = 0; angle < TAU; angle += PI / 2) {
+    push();
+    rotate(angle + PI / 4);
+    curve(0, 60, 0, 0, 20, 0, 20, 20);
+    curve(0, -60, 0, 0, 20, 0, 20, -20);
+    pop();
+  }
+  for (var angle = 0; angle < TAU; angle += PI / 2) {
+    push();
+    rotate(angle);
+    curve(0, 60, 0, 0, 15, 0, 15, -30);
+    curve(0, -60, 0, 0, 15, 0, 15, 30);
+    pop();
+  }
   pop();
 
   //  Regions area
