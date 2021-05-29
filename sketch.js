@@ -50,45 +50,96 @@ function draw() {
   stroke(255);
   var sign = 1;
   var angleOffset = 0;
-  for (var angle = 0; angle < TAU; angle += PI / 4) {
-    var baseAngle = angle + angleOffset;
+  for (var regionIndex = 0; regionIndex < 8; regionIndex++) {
+    push();
+    var regionAngle = (regionIndex * PI) / 4;
+    var baseAngle = regionAngle + angleOffset;
+    translate(360, 360);
+    rotate(baseAngle);
     beginShape();
-    vertex(
-      cos(0.04 * sign + baseAngle) * 212 + 360,
-      sin(0.04 * sign + baseAngle) * 212 + 360
-    );
-    for (var arcAngle = 0; arcAngle < PI / 5; arcAngle += PI / 32) {
-      var resultArcAngle = arcAngle + 0.145;
+
+    var regionEdgeElementX = cos(0.04 * sign) * 212;
+    var regionEdgeElementY = sin(0.04 * sign) * 212;
+    vertex(regionEdgeElementX, regionEdgeElementY);
+
+    var regionArcEndAngle = PI / 5;
+    var regionArcAngleOffset = 0.145;
+    var regionArcElementX = cos(regionArcAngleOffset * sign) * 287;
+    var regionArcElementY = sin(regionArcAngleOffset * sign) * 287;
+    for (var arcAngle = 0; arcAngle < regionArcEndAngle; arcAngle += PI / 32) {
+      var resultArcAngle = arcAngle + regionArcAngleOffset;
       vertex(
-        cos(resultArcAngle * sign + baseAngle) * 287 + 360,
-        sin(resultArcAngle * sign + baseAngle) * 287 + 360
+        cos(resultArcAngle * sign) * 287,
+        sin(resultArcAngle * sign) * 287
       );
     }
+
+    var regionCrescentEndAngle = PI - 0.2;
+    var regionArcSymbolX =
+      cos((PI / 4) * sign) * 250 + cos((-0 + PI / 5) * sign) * 37;
+    var regionArcSymbolY =
+      sin((PI / 4) * sign) * 250 + sin((-0 + PI / 5) * sign) * 37;
+    var saveCrescentAngle = 0;
     for (
       crescentAngle = 0;
-      crescentAngle < PI - 0.2;
+      crescentAngle < regionCrescentEndAngle;
       crescentAngle += PI / 32
     ) {
       vertex(
-        cos((PI / 4) * sign + baseAngle) * 250 +
-          360 +
-          cos((-crescentAngle + PI / 5) * sign + baseAngle) * 37,
-        sin((PI / 4) * sign + baseAngle) * 250 +
-          360 +
-          sin((-crescentAngle + PI / 5) * sign + baseAngle) * 37
+        cos((PI / 4) * sign) * 250 + cos((-crescentAngle + PI / 5) * sign) * 37,
+        sin((PI / 4) * sign) * 250 + sin((-crescentAngle + PI / 5) * sign) * 37
       );
+      saveCrescentAngle = crescentAngle;
     }
-    vertex(
-      cos((PI / 8) * sign + baseAngle) * 168 + 360,
-      sin((PI / 8) * sign + baseAngle) * 168 + 360
-    );
+    var regionEdgeSymbolX =
+      cos((PI / 4) * sign) * 250 +
+      cos((-saveCrescentAngle + PI / 5) * sign) * 37;
+    var regionEdgeSymbolY =
+      cos((PI / 4) * sign) * 250 +
+      sin((-saveCrescentAngle + PI / 5) * sign) * 37;
+
+    var regionEdgeCenterX = cos((PI / 8) * sign) * 168;
+    var regionEdgeCenterY = sin((PI / 8) * sign) * 168;
+    vertex(regionEdgeCenterX, regionEdgeCenterY);
     endShape(CLOSE);
+
+    drawingContext.clip();
+    var regionCenterX =
+      regionEdgeCenterX + (regionArcElementX - regionEdgeCenterX) / 2;
+    var regionCenterY =
+      regionEdgeElementY + (regionArcSymbolY - regionEdgeElementY) / 2;
+
+    push();
+    switch (regionIndex) {
+      case 0:
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4: //  Plant region - Water side
+        for (d = 330; d < 580; d += 10) {
+          circle(0, 0, d);
+        }
+        break;
+      case 5:
+        break;
+      case 6:
+        break;
+      case 7:
+        break;
+    }
+    pop();
+
     sign = -sign;
     if (sign == -1) {
       angleOffset = PI / 4;
     } else {
       angleOffset = 0;
     }
+    pop();
   }
   pop();
 
