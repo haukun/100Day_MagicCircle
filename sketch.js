@@ -48,14 +48,16 @@ function draw() {
   push();
   noFill();
   stroke(255);
+  rectMode(CENTER);
+
   var sign = 1;
   var angleOffset = 0;
   for (var regionIndex = 0; regionIndex < 8; regionIndex++) {
     push();
     var regionAngle = (regionIndex * PI) / 4;
-    var baseAngle = regionAngle + angleOffset;
+    var regionBaseAngle = regionAngle + angleOffset;
     translate(360, 360);
-    rotate(baseAngle);
+    rotate(regionBaseAngle);
     beginShape();
 
     var regionEdgeElementX = cos(0.04 * sign) * 212;
@@ -120,9 +122,24 @@ function draw() {
       case 3:
         break;
       case 4: //  Plant region - Water side
-        for (d = 330; d < 580; d += 10) {
-          circle(0, 0, d);
+        //  Ripple
+        for (var distance = 330; distance < 580; distance += 10) {
+          circle(0, 0, distance);
         }
+
+        //  Floating flower
+        fill(0);
+        var baseAngle = PI / 8;
+        var baseX = cos(baseAngle) * 230;
+        var baseY = sin(baseAngle) * 230;
+        for (var i = 12; i > 0; i--) {
+          push();
+          translate(baseX, baseY);
+          rotate(PI / 4 + baseAngle + (i * PI) / 4);
+          square(0, 0, i * 4, i / 2);
+          pop();
+        }
+
         break;
       case 5:
         break;
