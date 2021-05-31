@@ -140,6 +140,31 @@ function draw() {
           pop();
         }
 
+        //  Prosperous squares
+        for (var angle = 0; angle < TAU; angle += PI / 2) {
+          var x = baseX + cos(baseAngle + angle + PI / 4) * 68;
+          var y = baseY + sin(baseAngle + angle + PI / 4) * 68;
+          for (var i = 6; i > 0; i--) {
+            push();
+            translate(x, y);
+            rotate(baseAngle + angle + PI / 4);
+            square(0, 0, i * 8, i);
+            pop();
+          }
+        }
+
+        for (var angle = 0; angle < TAU; angle += PI / 2) {
+          var x = baseX + cos(baseAngle + angle) * 48;
+          var y = baseY + sin(baseAngle + angle) * 48;
+          for (var i = 3; i > 0; i--) {
+            push();
+            translate(x, y);
+            rotate(baseAngle + angle + PI / 4);
+            square(0, 0, i * 8, i * 2);
+            pop();
+          }
+        }
+
         break;
       case 5:
         break;
