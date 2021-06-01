@@ -166,7 +166,22 @@ function draw() {
         }
 
         break;
-      case 5:
+      case 5: //  Plant region - Earth side
+        //  Brick
+        var offsetAngle = -PI / 128;
+        for (var distance = 325; distance < 580; distance += 10) {
+          circle(0, 0, distance);
+          for (var angle = 0; angle < PI / 4; angle += PI / 32) {
+            var lineAngle = -angle + offsetAngle;
+            line(
+              (cos(lineAngle) * distance) / 2,
+              (sin(lineAngle) * distance) / 2,
+              cos(lineAngle) * (distance / 2 + 5),
+              sin(lineAngle) * (distance / 2 + 5)
+            );
+          }
+          offsetAngle = -offsetAngle;
+        }
         break;
       case 6:
         break;
