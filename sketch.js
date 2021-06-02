@@ -182,6 +182,19 @@ function draw() {
           }
           offsetAngle = -offsetAngle;
         }
+
+        //  Blooming flower
+        rectMode(CENTER);
+        fill(0);
+        var centerX = cos(-PI / 8) * 230;
+        var centerY = sin(-PI / 8) * 230;
+        for (var i = 25; i > 0; i--) {
+          push();
+          translate(centerX, centerY);
+          rotate((i * PI) / 3);
+          square(0, 0, i * 3);
+          pop();
+        }
         break;
       case 6:
         break;
