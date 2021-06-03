@@ -188,6 +188,13 @@ function draw() {
         fill(0);
         var centerX = cos(-PI / 8) * 230;
         var centerY = sin(-PI / 8) * 230;
+        for (var angle = 0; angle < TAU; angle += PI / 6) {
+          push();
+          translate(centerX + cos(angle) * 80, centerY + sin(angle) * 80);
+          rotate(angle);
+          rect(0, 0, 80, 5);
+          pop();
+        }
         for (var i = 25; i > 0; i--) {
           push();
           translate(centerX, centerY);
