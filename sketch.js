@@ -19,6 +19,7 @@ function draw() {
   }
 
   //  Regions circle - Plant symbol
+  push();
   translate(cos(PI + PI / 4) * 250 + 360, sin(PI + PI / 4) * 250 + 360);
   rotate(PI / 4);
   for (var angle = 0; angle < TAU; angle += PI / 2) {
@@ -42,6 +43,56 @@ function draw() {
     curve(0, -60, 0, 0, 15, 0, 15, 30);
     pop();
   }
+  pop();
+
+  //  Regions circle - Insect symbol
+  push();
+  translate(
+    cos((PI / 2) * 3 + PI / 4) * 250 + 360,
+    sin((PI / 2) * 3 + PI / 4) * 250 + 360
+  );
+  rotate(PI / 4);
+  for (var a = -1; a < 2; a += 2) {
+    for (var b = -1; b < 2; b += 2) {
+      line(0, 4 * b, 8 * a, 8 * b);
+      line(8 * a, 8 * b, 8 * a, 12 * b);
+    }
+  }
+  line(0, -16, 0, 16);
+  line(-9, 0, 9, 0);
+
+  var headAngle = PI / 8;
+  var tailAngle = PI - PI / 8;
+  arc(0, 0, 50, 50, headAngle, tailAngle);
+  arc(0, 0, 40, 40, headAngle, tailAngle);
+  arc(
+    cos(headAngle) * 22,
+    sin(headAngle) * 22,
+    5,
+    5,
+    headAngle - PI,
+    headAngle
+  );
+  arc(
+    cos(tailAngle) * 22,
+    sin(tailAngle) * 22,
+    5,
+    5,
+    tailAngle,
+    tailAngle + PI
+  );
+  for (var angle = headAngle; angle <= tailAngle; angle += PI / 4) {
+    line(cos(angle) * 20, sin(angle) * 20, cos(angle) * 25, sin(angle) * 25);
+  }
+
+  headAngle += PI;
+  tailAngle += PI;
+  arc(0, 0, 45, 45, headAngle, tailAngle);
+  for (var angle = headAngle + PI / 8; angle < tailAngle; angle += PI / 8) {
+    line(cos(angle) * 21, sin(angle) * 21, cos(angle) * 25, sin(angle) * 25);
+  }
+  pop();
+  
   pop();
 
   //  Regions area
