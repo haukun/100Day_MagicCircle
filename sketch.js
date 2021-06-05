@@ -255,6 +255,15 @@ function draw() {
         }
         break;
       case 6:
+        push();
+        var centerX = cos(PI / 8) * 230;
+        var centerY = sin(PI / 8) * 230;
+        translate(centerX, centerY);
+
+        for (var angle = 0; angle < TAU; angle += PI / 8) {
+          line(0, 0, cos(angle) * 100, sin(angle) * 100);
+        }
+        pop();
         break;
       case 7:
         break;
