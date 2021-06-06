@@ -92,7 +92,7 @@ function draw() {
     line(cos(angle) * 21, sin(angle) * 21, cos(angle) * 25, sin(angle) * 25);
   }
   pop();
-  
+
   pop();
 
   //  Regions area
@@ -254,7 +254,7 @@ function draw() {
           pop();
         }
         break;
-      case 6:
+      case 6: //  Insect region - Earth side
         push();
         var centerX = cos(PI / 8) * 230;
         var centerY = sin(PI / 8) * 230;
@@ -262,6 +262,21 @@ function draw() {
 
         for (var angle = 0; angle < TAU; angle += PI / 8) {
           line(0, 0, cos(angle) * 100, sin(angle) * 100);
+
+          for (var distance = 10; distance < 110; distance += 10) {
+            var nextAngle = angle + PI / 8;
+            var curveDistance = distance + distance / 2;
+            curve(
+              cos(angle) * curveDistance,
+              sin(angle) * curveDistance,
+              cos(angle) * distance,
+              sin(angle) * distance,
+              cos(nextAngle) * distance,
+              sin(nextAngle) * distance,
+              cos(nextAngle) * curveDistance,
+              sin(nextAngle) * curveDistance
+            );
+          }
         }
         pop();
         break;
