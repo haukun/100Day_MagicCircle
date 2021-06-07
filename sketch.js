@@ -276,6 +276,29 @@ function draw() {
               cos(nextAngle) * curveDistance,
               sin(nextAngle) * curveDistance
             );
+            for (i = 0; i < 1; i += 0.2) {
+              var curveX = curvePoint(
+                cos(angle) * curveDistance,
+                cos(angle) * distance,
+                cos(nextAngle) * distance,
+                cos(nextAngle) * curveDistance,
+                i
+              );
+              var curveY = curvePoint(
+                sin(angle) * curveDistance,
+                sin(angle) * distance,
+                sin(nextAngle) * distance,
+                sin(nextAngle) * curveDistance,
+                i
+              );
+              var curveAngle = atan2(curveY, curveX);
+              line(
+                curveX,
+                curveY,
+                curveX - cos(curveAngle) * distance/15,
+                curveY - sin(curveAngle) * distance/15
+              );
+            }
           }
         }
         pop();
