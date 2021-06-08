@@ -295,15 +295,42 @@ function draw() {
               line(
                 curveX,
                 curveY,
-                curveX - cos(curveAngle) * distance/15,
-                curveY - sin(curveAngle) * distance/15
+                curveX - (cos(curveAngle) * distance) / 15,
+                curveY - (sin(curveAngle) * distance) / 15
               );
             }
           }
         }
         pop();
         break;
-      case 7:
+      case 7: //  Insect region - Wind side
+        push();
+        fill(0);
+        var centerX = cos(-PI / 8) * 230;
+        var centerY = sin(-PI / 8) * 230;
+        translate(centerX, centerY);
+        for (var distance = 140; distance > 0; distance -= 20) {
+          for (
+            var angle = (distance / 120) * PI;
+            angle < (distance / 120) * PI + TAU;
+            angle += PI / 4
+          ) {
+            push();
+            rotate(angle);
+            bezier(
+              20,
+              0,
+              distance,
+              distance / 3,
+              distance,
+              -distance / 3,
+              10,
+              0
+            );
+            pop();
+          }
+        }
+        pop();
         break;
     }
     pop();
