@@ -327,6 +327,16 @@ function draw() {
               10,
               0
             );
+            bezier(
+              20,
+              0,
+              distance * 0.9,
+              distance / 6,
+              distance * 0.9,
+              -distance / 6,
+              10,
+              0
+            );
             pop();
           }
         }
