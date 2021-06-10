@@ -318,7 +318,7 @@ function draw() {
             push();
             rotate(angle);
             bezier(
-              20,
+              10,
               0,
               distance,
               distance / 3,
@@ -328,7 +328,7 @@ function draw() {
               0
             );
             bezier(
-              20,
+              10,
               0,
               distance * 0.9,
               distance / 6,
@@ -337,6 +337,17 @@ function draw() {
               10,
               0
             );
+            for (var i = 0.2; i < 1; i += 0.2) {
+              var bezierX = bezierPoint(
+                10,
+                distance * 0.9,
+                distance * 0.9,
+                10,
+                i
+              );
+              var bezierY = bezierPoint(0, distance / 6, -distance / 6, 0, i);
+              line(10, 0, bezierX * 0.9, bezierY * 0.9);
+            }
             pop();
           }
         }
