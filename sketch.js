@@ -93,6 +93,44 @@ function draw() {
   }
   pop();
 
+  //  Regions circle - Animal symbol
+  push();
+  translate(cos(PI / 4) * 250 + 360, sin(PI / 4) * 250 + 360);
+  rotate(-PI / 4);
+  curve(0, 40, 10, 5, -10, 5, 0, 40);
+  curve(0, -60, 10, 5, -10, 5, 0, -60);
+  push();
+  translate(cos(PI / 5) * 15, sin(PI / 5) * 15 + 5);
+  rotate(PI / 5);
+  ellipse(0, 0, 6, 6);
+  pop();
+  push();
+  translate(cos(PI / 2.5) * 15, sin(PI / 2.5) * 15 + 5);
+  rotate(PI / 2.5);
+  ellipse(0, 0, 8, 6);
+  pop();
+  push();
+  translate(cos(PI - PI / 5) * 15, sin(PI - PI / 5) * 15 + 5);
+  rotate(PI - PI / 5);
+  ellipse(0, 0, 6, 6);
+  pop();
+  push();
+  translate(cos(PI - PI / 2.5) * 15, sin(PI - PI / 2.5) * 15 + 5);
+  rotate(PI - PI / 2.5);
+  ellipse(0, 0, 8, 6);
+  pop();
+
+  line(0, -5, 0, -28);
+  line(0, -10, -5, -23);
+  line(0, -10, 5, -23);
+
+  curve(-90, -15, 10, -20, 20, 10, -5, -15);
+  curve(80, -15, 10, -20, 20, 10, 0, 25);
+  curve(90, -15, -10, -20, -20, 10, 5, -15);
+  curve(-80, -15, -10, -20, -20, 10, 0, 25);
+
+  pop();
+
   pop();
 
   //  Regions area
