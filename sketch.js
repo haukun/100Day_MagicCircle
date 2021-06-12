@@ -202,7 +202,10 @@ function draw() {
 
     push();
     switch (regionIndex) {
-      case 0:
+      case 0: //  Animal region - Wind side
+        for (var angle = 0; angle < PI / 4; angle += 0.02) {
+          line(0, 0, cos(angle) * 300, sin(angle) * 300);
+        }
         break;
       case 1:
         break;
