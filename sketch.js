@@ -203,9 +203,123 @@ function draw() {
     push();
     switch (regionIndex) {
       case 0: //  Animal region - Wind side
+        push();
         for (var angle = 0; angle < PI / 4; angle += 0.02) {
           line(0, 0, cos(angle) * 300, sin(angle) * 300);
         }
+        fill(0);
+        var rootX = regionArcSymbolX + cos(-PI / 3) * 40;
+        var rootY = regionArcSymbolY + sin(-PI / 3) * 40;
+        var distX1 = regionArcElementX + cos(PI / 2 + PI / 4) * 10;
+        var distY1 = regionArcElementY + sin(PI / 2 + PI / 4) * 10;
+        var distX2 = distX1 - 8 * 8;
+        var distY2 = distY1 - 8 * 4;
+        var distX3 = distX2 - 54;
+        var distY3 = distY2 + 54;
+
+        for (var i = 0; i < 4; i++) {
+          beginShape();
+          for (var j = 0; j <= 1; j += 0.5) {
+            var tempX = curvePoint(
+              rootX - (50 + i * 10),
+              rootX,
+              distX1 - i * 16,
+              distX1 - i * 16 - (50 + i * 20),
+              j
+            );
+            var tempY = curvePoint(
+              rootY - (50 + i * 10),
+              rootY,
+              distY1 - i * 8,
+              distY1 - i * 8 - (50 + i * 20),
+              j
+            );
+            vertex(tempX, tempY);
+          }
+          for (var j = 1; j > 0; j -= 0.1) {
+            tempX = curvePoint(
+              rootX + (50 + i * 10),
+              rootX,
+              distX1 - i * 16,
+              distX1 - i * 16 + (50 + i * 20),
+              j
+            );
+            tempY = curvePoint(
+              rootY + (50 + i * 10),
+              rootY,
+              distY1 - i * 8,
+              distY1 - i * 8 + (50 + i * 20),
+              j
+            );
+            vertex(tempX, tempY);
+          }
+          endShape();
+        }
+        for (var i = 0; i < 5; i++) {
+          beginShape();
+          for (var j = 0; j <= 1; j += 0.5) {
+            var tempX = curvePoint(
+              rootX - 90,
+              rootX,
+              distX2 - i * 12,
+              distX2 - i * 12 - 90,
+              j
+            );
+            var tempY = curvePoint(
+              rootY,
+              rootY,
+              distY2 + i * 12,
+              distY2 + i * 12,
+              j
+            );
+            vertex(tempX, tempY);
+          }
+          for (var j = 1; j > 0; j -= 0.1) {
+            tempX = curvePoint(
+              rootX + 90,
+              rootX,
+              distX2 - i * 12,
+              distX2 - i * 12 + 90,
+              j
+            );
+            tempY = curvePoint(
+              rootY,
+              rootY,
+              distY2 + i * 12,
+              distY2 + i * 12,
+              j
+            );
+            vertex(tempX, tempY);
+          }
+          endShape();
+        }
+        for (var i = 1; i < 3; i++) {
+          beginShape();
+          for (var j = 0; j <= 1; j += 0.5) {
+            var tempX = curvePoint(rootX, rootX, distX3, distX3, j);
+            var tempY = curvePoint(
+              rootY + 50 + i * 20,
+              rootY,
+              distY3 + i * 16 + i * 8,
+              distY3 + i * 16 + 50 + i * 20,
+              j
+            );
+            vertex(tempX, tempY);
+          }
+          for (j = 1; j > 0; j -= 0.1) {
+            tempX = curvePoint(rootX, rootX, distX3, distX3, j);
+            tempY = curvePoint(
+              rootY - (50 + i * 20),
+              rootY,
+              distY3 + i * 16 + i * 8,
+              distY3 + i * 16 - (50 + i * 20),
+              j
+            );
+            vertex(tempX, tempY);
+          }
+          endShape();
+        }
+        pop();
         break;
       case 1:
         break;
