@@ -216,6 +216,7 @@ function draw() {
         var distY2 = distY1 - 8 * 4;
         var distX3 = distX2 - 54;
         var distY3 = distY2 + 54;
+        var saveX, saveY;
 
         for (var i = 0; i < 4; i++) {
           beginShape();
@@ -236,6 +237,8 @@ function draw() {
             );
             vertex(tempX, tempY);
           }
+          saveX = tempX;
+          saveY = tempY;
           for (var j = 1; j > 0; j -= 0.1) {
             tempX = curvePoint(
               rootX + (50 + i * 10),
@@ -254,6 +257,7 @@ function draw() {
             vertex(tempX, tempY);
           }
           endShape();
+          line(rootX, rootY, saveX, saveY);
         }
         for (var i = 0; i < 5; i++) {
           beginShape();
@@ -274,6 +278,8 @@ function draw() {
             );
             vertex(tempX, tempY);
           }
+          saveX = tempX;
+          saveY = tempY;
           for (var j = 1; j > 0; j -= 0.1) {
             tempX = curvePoint(
               rootX + 90,
@@ -292,6 +298,7 @@ function draw() {
             vertex(tempX, tempY);
           }
           endShape();
+          line(rootX, rootY, saveX, saveY);
         }
         for (var i = 1; i < 3; i++) {
           beginShape();
@@ -306,6 +313,8 @@ function draw() {
             );
             vertex(tempX, tempY);
           }
+          saveX = tempX;
+          saveY = tempY;
           for (j = 1; j > 0; j -= 0.1) {
             tempX = curvePoint(rootX, rootX, distX3, distX3, j);
             tempY = curvePoint(
@@ -318,6 +327,7 @@ function draw() {
             vertex(tempX, tempY);
           }
           endShape();
+          line(rootX, rootY, saveX, saveY);
         }
         pop();
         break;
