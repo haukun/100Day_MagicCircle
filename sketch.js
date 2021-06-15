@@ -332,6 +332,25 @@ function draw() {
         pop();
         break;
       case 1:
+        for (var distance = 30; distance < 70; distance += 10) {
+          for (var angle = 0; angle < TAU; angle += PI / distance) {
+            var startX = regionCenterX + cos(angle) * distance - 10;
+            var startY = regionCenterY + sin(angle) * distance + 10;
+            var endX = regionCenterX + cos(angle) * (distance + 10) - 10;
+            var endY = regionCenterY + sin(angle) * (distance + 10) + 10;
+            var angleOffset = angle + distance;
+            bezier(
+              startX,
+              startY,
+              startX + (cos(angleOffset) * distance) / 9,
+              startY + (sin(angleOffset) * distance) / 9,
+              endX + (cos(angleOffset) * distance) / 9,
+              endY + (sin(angleOffset) * distance) / 9,
+              endX,
+              endY
+            );
+          }
+        }
         break;
       case 2:
         break;
