@@ -351,6 +351,26 @@ function draw() {
             );
           }
         }
+        push();
+        translate(regionCenterX - 10, regionCenterY + 10);
+        rotate(atan2(regionCenterY + 10, regionCenterX - 10));
+        for (angle = 0; angle < TAU; angle += PI / 30) {
+          var startX = cos(angle) * 25;
+          var startY = sin(angle) * 10;
+          var endX = cos(angle) * 30;
+          var endY = sin(angle) * 30;
+          bezier(
+            startX,
+            startY,
+            startX + cos(angle) * 10,
+            startY + sin(angle) * 10,
+            endX + cos(angle) * 10,
+            endY + sin(angle) * 10,
+            endX,
+            endY
+          );
+        }
+        pop();
         break;
       case 2:
         break;
