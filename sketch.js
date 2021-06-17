@@ -332,6 +332,9 @@ function draw() {
         pop();
         break;
       case 1:
+        for (var distance = 140; distance < 200; distance += 6) {
+          circle(regionCenterX - 10, regionCenterY + 10, distance);
+        }
         for (var distance = 30; distance < 70; distance += 10) {
           for (var angle = 0; angle < TAU; angle += PI / distance) {
             var startX = regionCenterX + cos(angle) * distance - 10;
