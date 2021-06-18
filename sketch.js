@@ -131,6 +131,33 @@ function draw() {
 
   pop();
 
+  //  Regions circle - Humankind symbol
+  push();
+  translate(cos(PI / 2 + PI / 4) * 250 + 360, sin(PI / 2 + PI / 4) * 250 + 360);
+  rotate(PI / 4);
+  var rotateOffset = 0;
+  for (var distance = 28; distance > 0; distance -= 8) {
+    rotateOffset += PI / 8;
+    beginShape();
+    var jaggedCount = 0;
+    var jaggedLength;
+    for (var angle = 0; angle < TAU; angle += PI / 32) {
+      jaggedCount++;
+      if (jaggedCount % 8 > 3) {
+        jaggedLength = distance;
+      } else {
+        jaggedLength = distance - (distance / 8 + 1);
+      }
+      vertex(
+        cos(angle + rotateOffset) * jaggedLength,
+        sin(angle + rotateOffset) * jaggedLength
+      );
+    }
+    endShape();
+  }
+
+  pop();
+
   pop();
 
   //  Regions area
