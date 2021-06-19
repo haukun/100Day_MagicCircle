@@ -358,7 +358,7 @@ function draw() {
         }
         pop();
         break;
-      case 1:
+      case 1: //  Animal region - Fire side
         for (var distance = 140; distance < 200; distance += 6) {
           circle(regionCenterX - 10, regionCenterY + 10, distance);
         }
@@ -402,7 +402,16 @@ function draw() {
         }
         pop();
         break;
-      case 2:
+      case 2: //  Humankind region - Fire side
+        rotate(PI / 4);
+        var offset = 0;
+        for (var y = -180; y < 0; y += 10) {
+          offset++;
+          for (var x = 150 - (offset % 2) * 10; x < 300; x += 20) {
+            var angle1 = (offset % 2) * PI;
+            arc(x, y, 18, 18, angle1 + 0.6, PI + angle1 - 0.6);
+          }
+        }
         break;
       case 3:
         break;
