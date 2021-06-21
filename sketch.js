@@ -407,10 +407,11 @@ function draw() {
         var offset = 0;
         for (var y = -180; y < 0; y += 10) {
           offset++;
+          var angle = (offset % 2) * PI;
           for (var x = 150 - (offset % 2) * 10; x < 300; x += 20) {
-            var angle1 = (offset % 2) * PI;
-            arc(x, y, 18, 18, angle1 + 0.6, PI + angle1 - 0.6);
-            arc(x, y, 18, 18, angle1 + PI + 0.2, angle1 + PI + PI / 2 - 0.6);
+            arc(x, y, 18, 18, angle + 0.6, PI + angle - 0.6);
+            arc(x, y, 18, 18, angle + PI + 0.2, angle + PI + PI / 2 - 0.6);
+            arc(x, y, 18, 18, angle + PI + PI / 2 + 0.6, angle + TAU - 0.2);
           }
         }
         break;
