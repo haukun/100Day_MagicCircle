@@ -416,6 +416,12 @@ function draw() {
         }
         break;
       case 3:
+        rotate(-PI / 4);
+        for (var y = 0; y < 180; y += 9) {
+          for (var x = 150; x < 300; x += 3) {
+            line(x, y, x, y + 1);
+          }
+        }
         break;
       case 4: //  Plant region - Water side
         //  Ripple
