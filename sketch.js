@@ -423,8 +423,12 @@ function draw() {
           for (var x = 150; x < 300; x += 3) {
             offset1 = ++offset1 % 7;
             line(x, y, x, y + 1);
-            if (offset1 % 2 == 1)
+            if (offset1 % 2 == 1) {
               line(x, y + 7, x, y + 7 - (offset2++ % 3 == 0 ? 4 : 1));
+            }
+            if (offset1 % 3 == 1) {
+              line(x - 2, y + 5, x + 2, y + 5);
+            }
           }
         }
         break;
