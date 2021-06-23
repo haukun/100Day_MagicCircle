@@ -417,9 +417,14 @@ function draw() {
         break;
       case 3:
         rotate(-PI / 4);
+        var offset1 = 0;
+        var offset2 = 0;
         for (var y = 0; y < 180; y += 9) {
           for (var x = 150; x < 300; x += 3) {
+            offset1 = ++offset1 % 7;
             line(x, y, x, y + 1);
+            if (offset1 % 2 == 1)
+              line(x, y + 7, x, y + 7 - (offset2++ % 3 == 0 ? 4 : 1));
           }
         }
         break;
