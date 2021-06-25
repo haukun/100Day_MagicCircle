@@ -415,7 +415,7 @@ function draw() {
           }
         }
         break;
-      case 3:
+      case 3:  //  Humankind region - Water side
         rotate(-PI / 4);
         var offset1 = 0;
         var offset2 = 0;
@@ -645,6 +645,17 @@ function draw() {
     endContour();
     endShape();
   }
+  pop();
+
+  // Octagon Region
+  push();
+  stroke(255);
+  noFill();
+  beginShape();
+  for (var angle = 0; angle < TAU; angle += PI / 4) {
+    vertex(cos(angle + PI / 8) * 140 + 360, sin(angle + PI / 8) * 140 + 360);
+  }
+  endShape(CLOSE);
   pop();
 
   //  Outer Circle : Border
