@@ -415,7 +415,7 @@ function draw() {
           }
         }
         break;
-      case 3:  //  Humankind region - Water side
+      case 3: //  Humankind region - Water side
         rotate(-PI / 4);
         var offset1 = 0;
         var offset2 = 0;
@@ -656,6 +656,26 @@ function draw() {
     vertex(cos(angle + PI / 8) * 140 + 360, sin(angle + PI / 8) * 140 + 360);
   }
   endShape(CLOSE);
+  pop();
+
+  //  Triangle Region
+  push();
+  stroke(255);
+  noFill();
+  for (var angle = 0; angle < TAU; angle += PI / 4) {
+    var x = cos(angle) * 185 + 360;
+    var y = sin(angle) * 185 + 360;
+    var angle1 = angle + PI / 2 + PI / 4;
+    var angle2 = angle - PI / 2 - PI / 4;
+    triangle(
+      x,
+      y,
+      x + cos(angle1) * 42,
+      y + sin(angle1) * 42,
+      x + cos(angle2) * 42,
+      y + sin(angle2) * 42
+    );
+  }
   pop();
 
   //  Outer Circle : Border
