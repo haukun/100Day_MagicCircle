@@ -662,6 +662,7 @@ function draw() {
   push();
   stroke(255);
   noFill();
+  rectMode(CENTER);
   var shape = 0;
   for (var angle = 0; angle < TAU; angle += PI / 4) {
     push();
@@ -678,9 +679,13 @@ function draw() {
       y + sin(angle2) * 42
     );
     drawingContext.clip();
-    for (var size = 20; size < 60; size += 7) {
-      if (shape % 2 == 0) {
+    if (shape % 2 == 0) {
+      for (var size = 20; size < 60; size += 7) {
         circle(cos(angle) * 167 + 360, sin(angle) * 167 + 360, size);
+      }
+    } else {
+      for (var size = 15; size < 60; size += 7) {
+        square(cos(angle) * 167 + 360, sin(angle) * 167 + 360, size);
       }
     }
     shape++;
