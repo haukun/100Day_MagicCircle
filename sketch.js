@@ -689,6 +689,14 @@ function draw() {
       }
     }
     shape++;
+
+    translate(cos(angle) * 167 + 360, sin(angle) * 167 + 360);
+    rotate(angle);
+    for (var i = 0; i < 3; i++) {
+      var angle1 = (int(random(6)) * TAU) / 6;
+      var angle2 = angle1 + ((int(random(2)) + 2) * TAU) / 6;
+      line(cos(angle1) * 6, sin(angle1) * 6, cos(angle2) * 6, sin(angle2) * 6);
+    }
     pop();
   }
   pop();
