@@ -631,6 +631,7 @@ function draw() {
   stroke(255);
   fill(0);
   for (var i = 1; i < 3; i++) {
+    push();
     var offset = (i * PI) / 4;
     beginShape();
     for (var angle = 0; angle < TAU; angle += PI / 2) {
@@ -644,6 +645,32 @@ function draw() {
     }
     endContour();
     endShape();
+
+    translate(360, 360);
+    for (
+      var directionAngle = 0;
+      directionAngle < TAU;
+      directionAngle += PI / 2
+    ) {
+      push();
+      rotate(offset + directionAngle);
+      var x = cos(angle) * 202;
+      var y = sin(angle) * 202;
+      for (var j = 0; j < 200; j += 5) {
+        for (var k = 0; k < 4; k++) {
+          var angle1 = (int(random(8)) * TAU) / 8;
+          var angle2 = (int(random(8)) * TAU) / 8;
+          line(
+            cos(angle1) * 2 + x - j - 3,
+            sin(angle1) * 4 + y + j + 3,
+            cos(angle2) * 2 + x - j - 3,
+            sin(angle2) * 4 + y + j + 3
+          );
+        }
+      }
+      pop();
+    }
+    pop();
   }
   pop();
 
