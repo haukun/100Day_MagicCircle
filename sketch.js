@@ -683,6 +683,20 @@ function draw() {
     vertex(cos(angle + PI / 8) * 140 + 360, sin(angle + PI / 8) * 140 + 360);
   }
   endShape(CLOSE);
+
+  //  Moon Symbol
+  push();
+  fill(0);
+  beginShape();
+  for (var angle = -PI / 2; angle < PI; angle += 0.1) {
+    vertex(cos(angle) * 60 + 360, sin(angle) * 60 + 360);
+  }
+  for (var angle = PI; angle > -PI / 2; angle -= 0.1) {
+    vertex(cos(angle) * 50 + 350, sin(angle) * 50 + 350);
+  }
+  endShape(CLOSE);
+  pop();
+
   pop();
 
   //  Triangle Region
