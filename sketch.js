@@ -684,6 +684,20 @@ function draw() {
   }
   endShape(CLOSE);
 
+  //  Sun Symbol
+  push();
+  fill(0);
+  circle(360, 360, 80);
+  for (var angle = PI / 2; angle < TAU - PI / 8; angle += PI / 24) {
+    line(
+      cos(angle) * 45 + 360,
+      sin(angle) * 45 + 360,
+      cos(angle) * 55 + 360,
+      sin(angle) * 55 + 360
+    );
+  }
+  pop();
+
   //  Moon Symbol
   push();
   fill(0);
