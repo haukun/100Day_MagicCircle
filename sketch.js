@@ -709,6 +709,25 @@ function draw() {
     vertex(cos(angle) * 50 + 350, sin(angle) * 50 + 350);
   }
   endShape(CLOSE);
+  drawingContext.clip();
+  var addAngle = 0;
+  for (var distance = -10; distance <= 10; distance += 2) {
+    for (
+      angle = PI;
+      angle > -PI / 2;
+      angle -= (addAngle = random(1) / 10) + 0.01
+    ) {
+      var adjustDistance =
+        55 + sin(((angle - PI) / (PI + PI / 2)) * PI) * distance;
+      line(
+        cos(angle) * adjustDistance + 355,
+        sin(angle) * adjustDistance + 355,
+        cos(angle + addAngle * 0.8) * adjustDistance + 355,
+        sin(angle + addAngle * 0.8) * adjustDistance + 355
+      );
+    }
+  }
+
   pop();
 
   pop();
