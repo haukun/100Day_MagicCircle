@@ -688,6 +688,23 @@ function draw() {
   push();
   fill(0);
   circle(360, 360, 80);
+
+  for (var angle = 0; angle < TAU; angle += 0.1) {
+    length = 4;
+    for (
+      var distance = 0;
+      distance < 40;
+      distance += length = (40 - distance) / 20 + random(1) + 1
+    ) {
+      line(
+        cos(angle) * distance + 360,
+        sin(angle) * distance + 360,
+        cos(angle + distance / 360) * (distance + length - 2) + 360,
+        sin(angle + distance / 360) * (distance + length - 2) + 360
+      );
+    }
+  }
+
   for (var angle = PI / 2; angle < TAU - PI / 8; angle += PI / 24) {
     line(
       cos(angle) * 45 + 360,
