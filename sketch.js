@@ -684,6 +684,22 @@ function draw() {
   }
   endShape(CLOSE);
 
+  //  Celestial Space
+  push();
+  fill(255);
+  for (var distance = 65; distance < 100; distance += 5) {
+    for (
+      var angle = distance;
+      angle < TAU + distance;
+      angle += 0.1 + random(0.4) - distance * 0.0005
+    ) {
+      var x = cos(angle) * distance + 360;
+      var y = sin(angle) * distance + 360;
+      circle(x, y, 1);
+    }
+  }
+  pop();
+
   //  Sun Symbol
   push();
   fill(0);
