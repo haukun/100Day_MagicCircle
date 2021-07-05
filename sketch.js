@@ -687,6 +687,7 @@ function draw() {
   //  Celestial Space
   push();
   fill(255);
+  var starArray = [];
   for (var distance = 65; distance < 100; distance += 5) {
     for (
       var angle = distance;
@@ -696,6 +697,10 @@ function draw() {
       var x = cos(angle) * distance + 360;
       var y = sin(angle) * distance + 360;
       circle(x, y, 1);
+      starArray
+        .filter((e) => dist(e.x, e.y, x, y) < 8)
+        .forEach((e) => line(e.x, e.y, x, y));
+      starArray.push({ x: x, y: y });
     }
   }
   pop();
