@@ -683,6 +683,7 @@ function draw() {
     vertex(cos(angle + PI / 8) * 140 + 360, sin(angle + PI / 8) * 140 + 360);
   }
   endShape(CLOSE);
+  drawingContext.clip();
 
   //  Celestial Space
   push();
@@ -703,6 +704,15 @@ function draw() {
       starArray.push({ x: x, y: y });
     }
   }
+
+  //  Holoscope Space
+  push();
+  noFill();
+  for (var distance = 200; distance < 300; distance += 5) {
+    circle(360, 360, distance);
+  }
+  pop();
+
   pop();
 
   //  Sun Symbol
