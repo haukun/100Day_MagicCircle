@@ -711,6 +711,21 @@ function draw() {
   for (var distance = 200; distance < 300; distance += 5) {
     circle(360, 360, distance);
   }
+
+  noStroke();
+  fill(0);
+  for (var angle = 0; angle < TAU; angle += PI / 4) {
+    push();
+    var zodiacAngle = angle + PI / 8;
+    translate(cos(zodiacAngle) * 120 + 360, sin(zodiacAngle) * 120 + 360);
+    rotate(zodiacAngle);
+    beginShape();
+    for (var edge = 0; edge < TAU; edge += PI / 3) {
+      vertex(cos(edge) * 15, sin(edge) * 15);
+    }
+    endShape(CLOSE);
+    pop();
+  }
   pop();
 
   pop();
