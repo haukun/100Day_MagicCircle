@@ -724,6 +724,67 @@ function draw() {
       vertex(cos(edge) * 15, sin(edge) * 15);
     }
     endShape(CLOSE);
+
+    push();
+    rectMode(CENTER);
+    stroke(255);
+    if (random(1) < 0.5) {
+      circle(0, 0, random(10));
+    }
+    for (var i = 0; i < 2; i++) {
+      var pattern = int(random(3));
+      var size = random(7) + 3;
+      var distance = random(4) + 3;
+      switch (pattern) {
+        case 0:
+          var randomAngle = random(TAU);
+          circle(cos(randomAngle) * distance, sin(randomAngle) * 5, size);
+          circle(
+            cos(randomAngle + PI) * distance,
+            sin(randomAngle + PI) * 5,
+            size
+          );
+          break;
+        case 1:
+          var randomAngle = random(TAU);
+          var randomAngle2 = random(TAU);
+          var randomAngle3 = random(PI) + PI / 4;
+          arc(
+            cos(randomAngle) * distance,
+            sin(randomAngle) * distance,
+            size,
+            size,
+            randomAngle2,
+            randomAngle2 + randomAngle3
+          );
+          arc(
+            cos(randomAngle + PI) * distance,
+            sin(randomAngle + PI) * distance,
+            size,
+            size,
+            randomAngle2 + PI,
+            randomAngle2 + randomAngle3 + PI
+          );
+          break;
+        case 2:
+          var randomAngle = random(TAU);
+          var randomAngle2 = random(TAU) + PI / 4;
+          line(
+            cos(randomAngle) * distance,
+            sin(randomAngle) * distance,
+            cos(randomAngle + randomAngle2) * distance,
+            sin(randomAngle * randomAngle2) * distance
+          );
+          line(
+            cos(randomAngle + PI) * distance,
+            sin(randomAngle + PI) * distance,
+            cos(randomAngle + randomAngle2 + PI) * distance,
+            sin(randomAngle * randomAngle2 + PI) * distance
+          );
+          break;
+      }
+    }
+    pop();
     pop();
   }
   pop();
