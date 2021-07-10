@@ -716,6 +716,11 @@ function draw() {
   fill(0);
   for (var angle = 0; angle < TAU; angle += PI / 4) {
     push();
+    var BaseGalaxyAngle1 = angle + PI / 8;
+    var BaseGalaxyAngle2 = angle + PI / 8 + PI / 4;
+    var PointGalaxyAngle = angle + PI / 4;
+    bezier(cos(BaseGalaxyAngle1) * 105 + 360, sin(BaseGalaxyAngle1) * 105 + 360,cos(PointGalaxyAngle) * 125 + 360, sin(PointGalaxyAngle) * 125 + 360,cos(PointGalaxyAngle) * 125 + 360, sin(PointGalaxyAngle) * 125 + 360,cos(BaseGalaxyAngle2) * 140 + 360, sin(BaseGalaxyAngle2) * 140 + 360)
+    
     var zodiacAngle = angle + PI / 8;
     translate(cos(zodiacAngle) * 120 + 360, sin(zodiacAngle) * 120 + 360);
     rotate(zodiacAngle);
