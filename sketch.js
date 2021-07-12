@@ -931,6 +931,18 @@ function draw() {
   circle(360, 360, 660);
   pop();
 
+  push();
+  stroke(255);
+  for (var angle = 0; angle < TAU; angle += PI / 128) {
+    line(
+      cos(angle) * 330 + 360,
+      sin(angle) * 330 + 360,
+      cos(angle) * 340 + 360,
+      sin(angle) * 340 + 360
+    );
+  }
+  pop();
+
   //  Outer Circle : District border
   push();
   stroke(255);
