@@ -937,9 +937,24 @@ function draw() {
     line(
       cos(angle) * 330 + 360,
       sin(angle) * 330 + 360,
-      cos(angle) * 340 + 360,
-      sin(angle) * 340 + 360
+      (nextX = cos(angle) * 340 + 360),
+      (nextY = sin(angle) * 340 + 360)
     );
+    var offset = 0;
+    if (random(1) > 0.3) {
+      if (random(1) > 0.5) {
+        offset = PI / 2 + PI / 4;
+      } else {
+        offset = -PI / 2 - PI / 4;
+      }
+    }
+    line(
+      nextX,
+      nextY,
+      (nextX = nextX + cos(angle + offset) * 5),
+      (nextY = nextY + sin(angle + offset) * 5)
+    );
+    line(nextX, nextY, nextX + cos(angle) * 5, nextY + sin(angle) * 5);
   }
   pop();
 
