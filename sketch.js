@@ -940,21 +940,31 @@ function draw() {
       (nextX = cos(angle) * 340 + 360),
       (nextY = sin(angle) * 340 + 360)
     );
-    var offset = 0;
-    if (random(1) > 0.3) {
-      if (random(1) > 0.5) {
-        offset = PI / 2 + PI / 4;
-      } else {
-        offset = -PI / 2 - PI / 4;
+    for (var i = 0; i < 2; i++) {
+      var offset = 0;
+      var length = (i + 1) * 2;
+      if (random(1) > 0.2) {
+        if (random(1) > 0.5) {
+          offset = PI / 2 + PI / 4;
+        } else {
+          offset = -PI / 2 - PI / 4;
+        }
+        length = 6;
       }
+      line(
+        nextX,
+        nextY,
+        (nextX = nextX + cos(angle + offset) * length),
+        (nextY = nextY + sin(angle + offset) * length)
+      );
+      line(
+        nextX,
+        nextY,
+        (nextX = nextX + cos(angle) * length),
+        (nextY = nextY + sin(angle) * length)
+      );
     }
-    line(
-      nextX,
-      nextY,
-      (nextX = nextX + cos(angle + offset) * 5),
-      (nextY = nextY + sin(angle + offset) * 5)
-    );
-    line(nextX, nextY, nextX + cos(angle) * 5, nextY + sin(angle) * 5);
+    circle(nextX, nextY, 2);
   }
   pop();
 
