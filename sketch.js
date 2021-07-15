@@ -968,6 +968,32 @@ function draw() {
   }
   pop();
 
+  push();
+  stroke(255);
+  noFill();
+  for (var i = 0; i < 4; i++) {
+    var angle = PI / 4 + (i * PI) / 2;
+    push();
+    translate(cos(angle) * 420 + 360, sin(angle) * 420 + 360);
+    rotate(angle);
+    for (var distance = 45; distance > 0; distance -= 6) {
+      beginShape();
+      for (var angle2 = PI + PI / 2; angle2 < TAU + PI / 2; angle2 += PI / 32) {
+        switch (i) {
+          case 2:
+            vertex(
+              asin(cos(angle2)) * distance,
+              (asin(sin(angle2)) * distance) / 2
+            );
+            break;
+        }
+      }
+      endShape();
+    }
+    pop();
+  }
+  pop();
+
   //  Outer Circle : District border
   push();
   stroke(255);
