@@ -1013,6 +1013,17 @@ function draw() {
             x2 + cos(angle - 0.2) * (30 - abs(offset)),
             y2 + sin(angle - 0.2) * (30 - abs(offset))
           );
+
+          push();
+          translate(
+            x2 + (cos(angle) * (30 - abs(offset))) / 1.5,
+            y2 + (sin(angle) * (30 - abs(offset))) / 1.5
+          );
+          rotate(angle + PI);
+          arc(0, 0, 30 - abs(offset), (30 - abs(offset)) / 2, -PI / 4, +PI / 4);
+          pop();
+
+          circle(x2, y2, 3);
           break;
       }
     }
