@@ -986,6 +986,12 @@ function draw() {
               (asin(sin(angle2)) * distance) / 2
             );
             break;
+          case 3:
+            vertex(
+              atan(cos(angle2)) * distance * 2,
+              (asin(sin(angle2)) * distance) / 2
+            );
+            break;
         }
       }
       endShape();
