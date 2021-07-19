@@ -997,14 +997,14 @@ function draw() {
       endShape();
     }
     for (var offset = -22.5; offset < 24; offset += 3) {
+      var target = -offset / 35;
+      var target2 = target - (offset / abs(offset)) * 0.03;
+      var x1 = 0;
+      var y1 = asin(sin(PI + PI / 2)) * offset;
+      var x2 = -410 + cos(target2) * 350;
+      var y2 = sin(target2) * 350;
       switch (i) {
         case 2:
-          var target = -offset / 35;
-          var target2 = target - (offset / abs(offset)) * 0.03;
-          var x1 = 0;
-          var y1 = asin(sin(PI + PI / 2)) * offset;
-          var x2 = -410 + cos(target2) * 350;
-          var y2 = sin(target2) * 350;
           line(x1, y1, x2, y2);
           var angle = atan2(y2 - y1, x2 - x1) - PI;
           line(
@@ -1031,6 +1031,39 @@ function draw() {
 
           circle(x2, y2, 3);
           break;
+        case 3:
+          curve(
+            x1 + cos(target) * 90,
+            y1 + sin(target) * 90,
+            x1,
+            y1,
+            x2,
+            y2,
+            x2 - cos(target) * 50,
+            y2 - sin(target) * 50
+          );
+
+          var angle = atan2(y2 - y1, x2 - x1) - PI;
+          curve(
+            x2,
+            y2,
+            x2,
+            y2,
+            x2 + cos(angle + 0.2) * (30 - abs(offset)),
+            y2 + sin(angle + 0.2) * (30 - abs(offset)),
+            x2 + cos(angle) * -60,
+            y2 + sin(angle) * -60
+          );
+          curve(
+            x2,
+            y2,
+            x2,
+            y2,
+            x2 + cos(angle - 0.2) * (30 - abs(offset)),
+            y2 + sin(angle - 0.2) * (30 - abs(offset)),
+            x2 + cos(angle) * -60,
+            y2 + sin(angle) * -60
+          );
       }
     }
     pop();
