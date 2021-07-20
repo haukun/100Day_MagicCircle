@@ -1064,6 +1064,28 @@ function draw() {
             x2 + cos(angle) * -60,
             y2 + sin(angle) * -60
           );
+
+          curve(
+            x2,
+            y2,
+            x2,
+            y2,
+            x2 + cos(angle + 0.6) * (20 - abs(offset)),
+            y2 + sin(angle + 0.6) * (20 - abs(offset)),
+            x2 + cos(angle) * -30,
+            y2 + sin(angle) * -30
+          );
+          curve(
+            x2,
+            y2,
+            x2,
+            y2,
+            x2 + cos(angle - 0.6) * (20 - abs(offset)),
+            y2 + sin(angle - 0.6) * (20 - abs(offset)),
+            x2 + cos(angle) * -30,
+            y2 + sin(angle) * -30
+          );
+          circle(x2, y2, 3);
       }
     }
     pop();
