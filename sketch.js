@@ -980,6 +980,9 @@ function draw() {
       beginShape();
       for (var angle2 = PI + PI / 2; angle2 < TAU + PI / 2; angle2 += PI / 32) {
         switch (i) {
+          case 0:
+            vertex(asin(cos(angle2)) * distance, atan(sin(angle2)) * distance);
+            break;
           case 2:
             vertex(
               asin(cos(angle2)) * distance,
