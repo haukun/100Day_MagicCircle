@@ -1007,6 +1007,18 @@ function draw() {
       var x2 = -410 + cos(target2) * 350;
       var y2 = sin(target2) * 350;
       switch (i) {
+        case 0:
+          curve(200, 0, x1, y1, x2, y2, -100, 0);
+          var cx = curvePoint(200, x1, x2, -100, abs(offset) / 48 + 0.5);
+          var cy = curvePoint(0, y1, y2, 0, abs(offset) / 48 + 0.5);
+          var x3 = -410 + cos(target2 + 0.03) * 350;
+          var y3 = sin(target2 + 0.03) * 350;
+          var x4 = -410 + cos(target2 - 0.03) * 350;
+          var y4 = sin(target2 - 0.03) * 350;
+          curve(x2, y2, cx, cy, x3, y3, x2, y2);
+          curve(x2, y2, cx, cy, x4, y4, x2, y2);
+
+          break;
         case 2:
           line(x1, y1, x2, y2);
           var angle = atan2(y2 - y1, x2 - x1) - PI;
