@@ -1011,13 +1011,22 @@ function draw() {
           curve(200, 0, x1, y1, x2, y2, -100, 0);
           var cx = curvePoint(200, x1, x2, -100, abs(offset) / 48 + 0.5);
           var cy = curvePoint(0, y1, y2, 0, abs(offset) / 48 + 0.5);
+          var cx2 = curvePoint(200, x1, x2, -100, abs(offset) / 48 + 0.4);
+          var cy2 = curvePoint(0, y1, y2, 0, abs(offset) / 48 + 0.4);
           var x3 = -410 + cos(target2 + 0.03) * 350;
           var y3 = sin(target2 + 0.03) * 350;
           var x4 = -410 + cos(target2 - 0.03) * 350;
           var y4 = sin(target2 - 0.03) * 350;
+          var x5 = -410 + cos(target2 + 0.05) * 355;
+          var y5 = sin(target2 + 0.05) * 355;
+          var x6 = -410 + cos(target2 - 0.05) * 355;
+          var y6 = sin(target2 - 0.05) * 355;
           curve(x2, y2, cx, cy, x3, y3, x2, y2);
           curve(x2, y2, cx, cy, x4, y4, x2, y2);
+          curve(x2, y2, cx2, cy2, x5, y5, x2, y2);
+          curve(x2, y2, cx2, cy2, x6, y6, x2, y2);
 
+          circle(x2, y2, 3);
           break;
         case 2:
           line(x1, y1, x2, y2);
