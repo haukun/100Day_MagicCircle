@@ -983,6 +983,12 @@ function draw() {
           case 0:
             vertex(asin(cos(angle2)) * distance, atan(sin(angle2)) * distance);
             break;
+          case 1:
+            vertex(
+              atan(cos(angle2)) * distance * 2,
+              atan(sin(angle2)) * distance
+            );
+            break;
           case 2:
             vertex(
               asin(cos(angle2)) * distance,
