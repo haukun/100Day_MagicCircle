@@ -1034,6 +1034,43 @@ function draw() {
 
           circle(x2, y2, 3);
           break;
+        case 1:
+          bezier(
+            0,
+            asin(sin(PI + PI / 2)) * offset,
+            -50,
+            (asin(sin(PI + PI / 2)) * offset) / 2,
+            -380 + cos(target) * 350,
+            sin(target) * 350,
+            -415 + cos(target2) * 350,
+            sin(target2) * 350
+          );
+          var bx = bezierPoint(
+            0,
+            -50,
+            -380 + cos(target) * 350,
+            -415 + cos(target2) * 350,
+            0.9
+          );
+          var by = bezierPoint(
+            asin(sin(PI + PI / 2)) * offset,
+            (asin(sin(PI + PI / 2)) * offset) / 2,
+            sin(target) * 350,
+            sin(target2) * 350,
+            0.9
+          );
+          var cx1 = -415 + cos(target2) * 350;
+          var cy1 = sin(target2) * 350;
+          var cx2 = -415 + cos(target2) * 360;
+          var cy2 = sin(target2) * 360;
+          var x3 = -415 + cos(target2 + 0.02) * 350;
+          var y3 = sin(target2 + 0.02) * 350;
+          var x4 = -415 + cos(target2 - 0.02) * 350;
+          var y4 = sin(target2 - 0.02) * 350;
+
+          bezier(bx, by, cx1, cy1, cx2, cy2, x3, y3);
+          bezier(bx, by, cx1, cy1, cx2, cy2, x4, y4);
+          break;
         case 2:
           line(x1, y1, x2, y2);
           var angle = atan2(y2 - y1, x2 - x1) - PI;
