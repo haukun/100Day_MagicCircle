@@ -1059,6 +1059,21 @@ function draw() {
             sin(target2) * 350,
             0.9
           );
+          var bx2 = bezierPoint(
+            0,
+            -50,
+            -380 + cos(target) * 350,
+            -415 + cos(target2) * 350,
+            0.7
+          );
+          var by2 = bezierPoint(
+            asin(sin(PI + PI / 2)) * offset,
+            (asin(sin(PI + PI / 2)) * offset) / 2,
+            sin(target) * 350,
+            sin(target2) * 350,
+            0.7
+          );
+
           var cx1 = -415 + cos(target2) * 350;
           var cy1 = sin(target2) * 350;
           var cx2 = -415 + cos(target2) * 360;
@@ -1067,9 +1082,16 @@ function draw() {
           var y3 = sin(target2 + 0.02) * 350;
           var x4 = -415 + cos(target2 - 0.02) * 350;
           var y4 = sin(target2 - 0.02) * 350;
+          var x5 = -415 + cos(target2 + 0.04) * 350;
+          var y5 = sin(target2 + 0.04) * 350;
+          var x6 = -415 + cos(target2 - 0.04) * 350;
+          var y6 = sin(target2 - 0.04) * 350;
 
           bezier(bx, by, cx1, cy1, cx2, cy2, x3, y3);
           bezier(bx, by, cx1, cy1, cx2, cy2, x4, y4);
+          bezier(bx2, by2, bx2, by2, cx2, cy2, x5, y5);
+          bezier(bx2, by2, bx2, by2, cx2, cy2, x6, y6);
+          circle(-415 + cos(target2) * 350, sin(target2) * 350, 3);
           break;
         case 2:
           line(x1, y1, x2, y2);
