@@ -1177,6 +1177,12 @@ function draw() {
           circle(x2, y2, 3);
       }
     }
+    for (var distance = 0; distance <= 40; distance += 3) {
+      for (var sign = -1; sign < 2; sign += 2) {
+        line(40 - distance, 40 * sign + (distance * sign) / 8, -90, 170 * sign);
+        circle(40 - distance, 40 * sign + (distance * sign) / 8, 2);
+      }
+    }
     pop();
   }
   pop();
