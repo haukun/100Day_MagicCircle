@@ -5,6 +5,7 @@ function setup() {
 function draw() {
   randomSeed(42);
   background(0);
+  colorMode(HSB);
 
   //  Regions circle
   push();
@@ -818,6 +819,7 @@ function draw() {
   //  Sun Symbol
   push();
   fill(0);
+  stroke(15, 25, 100);
   circle(360, 360, 80);
 
   for (var angle = 0; angle < TAU; angle += 0.1) {
@@ -849,6 +851,7 @@ function draw() {
   //  Moon Symbol
   push();
   fill(0);
+  stroke(45, 25, 100);
   beginShape();
   for (var angle = -PI / 2; angle < PI; angle += 0.1) {
     vertex(cos(angle) * 60 + 360, sin(angle) * 60 + 360);
