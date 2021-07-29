@@ -688,7 +688,9 @@ function draw() {
 
   //  Celestial Space
   push();
+  push();
   fill(255);
+  stroke(75, 25, 100);
   var starArray = [];
   for (var distance = 65; distance < 100; distance += 5) {
     for (
@@ -705,6 +707,7 @@ function draw() {
       starArray.push({ x: x, y: y });
     }
   }
+  pop();
 
   //  Holoscope Space
   push();
