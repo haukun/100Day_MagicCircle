@@ -713,6 +713,11 @@ function draw() {
   push();
   noFill();
   for (var distance = 200; distance < 300; distance += 5) {
+    stroke(
+      255 - ((distance - 200) / 100) * 90,
+      25,
+      100 - ((distance - 200) / 100) * 50
+    );
     circle(360, 360, distance);
   }
 
