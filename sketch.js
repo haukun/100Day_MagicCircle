@@ -893,12 +893,12 @@ function draw() {
 
   //  Triangle Region
   push();
-  stroke(255);
   noFill();
   rectMode(CENTER);
   var shape = 0;
   for (var angle = 0; angle < TAU; angle += PI / 4) {
     push();
+    stroke(135, 25, 75);
     var x = cos(angle) * 185 + 360;
     var y = sin(angle) * 185 + 360;
     var angle1 = angle + PI / 2 + PI / 4;
@@ -925,6 +925,7 @@ function draw() {
 
     translate(cos(angle) * 167 + 360, sin(angle) * 167 + 360);
     rotate(angle);
+    stroke(255);
     for (var i = 0; i < 3; i++) {
       var angle1 = (int(random(6)) * TAU) / 6;
       var angle2 = angle1 + ((int(random(2)) + 2) * TAU) / 6;
