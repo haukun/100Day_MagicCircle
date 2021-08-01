@@ -164,12 +164,12 @@ function draw() {
   //  Regions area
   push();
   noFill();
-  stroke(255);
   rectMode(CENTER);
 
   var sign = 1;
   var angleOffset = 0;
   for (var regionIndex = 0; regionIndex < 8; regionIndex++) {
+    stroke(285, 25, 100);
     push();
     var regionAngle = (regionIndex * PI) / 4;
     var regionBaseAngle = regionAngle + angleOffset;
@@ -229,6 +229,7 @@ function draw() {
       regionEdgeElementY + (regionArcSymbolY - regionEdgeElementY) / 2;
 
     push();
+    stroke(255);
     switch (regionIndex) {
       case 0: //  Animal region - Wind side
         push();
@@ -629,9 +630,9 @@ function draw() {
 
   //  Dual square
   push();
-  stroke(255);
   fill(0);
   for (var i = 1; i < 3; i++) {
+    stroke(285, 25, 100);
     push();
     var offset = (i * PI) / 4;
     beginShape();
@@ -647,6 +648,7 @@ function draw() {
     endContour();
     endShape();
 
+    stroke(255);
     translate(360, 360);
     for (
       var directionAngle = 0;
@@ -677,7 +679,7 @@ function draw() {
 
   // Octagon Region
   push();
-  stroke(255);
+  stroke(165, 25, 50);
   noFill();
   beginShape();
   for (var angle = 0; angle < TAU; angle += PI / 4) {
@@ -1201,11 +1203,12 @@ function draw() {
 
   //  Outer Circle : District border
   push();
-  stroke(255);
   strokeWeight(1);
   noFill();
+  stroke(255);
   circle(360, 360, 647);
   circle(360, 360, 593);
+  stroke(285, 25, 100);
   circle(360, 360, 585);
   pop();
 
@@ -1239,7 +1242,7 @@ function draw() {
 
   //  Elementals path
   push();
-  stroke(255);
+  stroke(285, 25, 100);
   noFill();
   for (var angle = 0; angle < TAU; angle += PI / 2) {
     push();
