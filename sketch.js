@@ -229,10 +229,10 @@ function draw() {
       regionEdgeElementY + (regionArcSymbolY - regionEdgeElementY) / 2;
 
     push();
-    stroke(255);
     switch (regionIndex) {
       case 0: //  Animal region - Wind side
         push();
+        stroke(120, 40, 100);
         for (var angle = 0; angle < PI / 4; angle += 0.02) {
           line(0, 0, cos(angle) * 300, sin(angle) * 300);
         }
@@ -361,6 +361,7 @@ function draw() {
         pop();
         break;
       case 1: //  Animal region - Fire side
+        stroke(60, 40, 100);
         for (var distance = 140; distance < 200; distance += 6) {
           circle(regionCenterX - 10, regionCenterY + 10, distance);
         }
@@ -405,6 +406,7 @@ function draw() {
         pop();
         break;
       case 2: //  Humankind region - Fire side
+        stroke(30, 40, 100);
         rotate(PI / 4);
         var offset = 0;
         for (var y = -180; y < 0; y += 10) {
@@ -418,6 +420,7 @@ function draw() {
         }
         break;
       case 3: //  Humankind region - Water side
+        stroke(330, 40, 100);
         rotate(-PI / 4);
         var offset1 = 0;
         var offset2 = 0;
@@ -435,6 +438,7 @@ function draw() {
         }
         break;
       case 4: //  Plant region - Water side
+        stroke(210, 40, 100);
         //  Ripple
         for (var distance = 330; distance < 580; distance += 10) {
           circle(0, 0, distance);
@@ -480,6 +484,7 @@ function draw() {
 
         break;
       case 5: //  Plant region - Earth side
+        stroke(180, 40, 100);
         //  Brick
         var offsetAngle = -PI / 128;
         for (var distance = 325; distance < 580; distance += 10) {
@@ -517,6 +522,7 @@ function draw() {
         }
         break;
       case 6: //  Insect region - Earth side
+        stroke(240, 40, 100);
         push();
         var centerX = cos(PI / 8) * 230;
         var centerY = sin(PI / 8) * 230;
@@ -567,6 +573,7 @@ function draw() {
         break;
       case 7: //  Insect region - Wind side
         push();
+        stroke(150, 40, 100);
         fill(0);
         var centerX = cos(-PI / 8) * 230;
         var centerY = sin(-PI / 8) * 230;
