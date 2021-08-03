@@ -10,7 +10,7 @@ function draw() {
   //  Regions circle
   push();
   noFill();
-  stroke(255);
+  stroke(128);
   for (var angle = 0; angle < TAU; angle += PI / 2) {
     circle(
       cos(angle + PI / 4) * 250 + 360,
@@ -21,6 +21,7 @@ function draw() {
 
   //  Regions circle - Plant symbol
   push();
+  stroke(105, 35, 100);
   translate(cos(PI + PI / 4) * 250 + 360, sin(PI + PI / 4) * 250 + 360);
   rotate(PI / 4);
   for (var angle = 0; angle < TAU; angle += PI / 2) {
@@ -48,6 +49,7 @@ function draw() {
 
   //  Regions circle - Insect symbol
   push();
+  stroke(300, 35, 100);
   translate(
     cos((PI / 2) * 3 + PI / 4) * 250 + 360,
     sin((PI / 2) * 3 + PI / 4) * 250 + 360
@@ -96,6 +98,7 @@ function draw() {
 
   //  Regions circle - Animal symbol
   push();
+  stroke(315, 35, 100);
   translate(cos(PI / 4) * 250 + 360, sin(PI / 4) * 250 + 360);
   rotate(-PI / 4);
   curve(0, 40, 10, 5, -10, 5, 0, 40);
@@ -134,6 +137,7 @@ function draw() {
 
   //  Regions circle - Humankind symbol
   push();
+  stroke(345, 35, 100);
   translate(cos(PI / 2 + PI / 4) * 250 + 360, sin(PI / 2 + PI / 4) * 250 + 360);
   rotate(PI / 4);
   var rotateOffset = 0;
@@ -1297,7 +1301,7 @@ function draw() {
   drawingContext.clip();
 
   noFill();
-  stroke(255);
+  stroke(0, 50, 100);
   for (angle = 0; angle < TAU; angle += PI / 4) {
     arc(
       baseX + cos(angle) * 50,
@@ -1345,7 +1349,7 @@ function draw() {
   drawingContext.clip();
 
   noFill();
-  stroke(255);
+  stroke(270, 50, 100);
   for (angle = 0; angle < TAU; angle += PI / 4) {
     push();
     translate(baseX + cos(angle) * 30, baseY + sin(angle) * 30);
@@ -1386,7 +1390,7 @@ function draw() {
   circle(baseX, baseY, 65);
   drawingContext.clip();
   noFill();
-  stroke(255);
+  stroke(135, 50, 100);
   for (angle = 0; angle < TAU; angle += PI / 4) {
     bezier(
       baseX + cos(angle) * 40,
@@ -1432,7 +1436,7 @@ function draw() {
   }
   pop();
 
-  //  Earch circle
+  //  Earth circle
   push();
   fill(0);
   noStroke();
@@ -1443,7 +1447,7 @@ function draw() {
   drawingContext.clip();
   rectMode(CENTER);
   noFill();
-  stroke(255);
+  stroke(90, 50, 100);
   for (angle = 0; angle < TAU; angle += PI / 4) {
     push();
     translate(baseX + cos(angle) * 30, baseY + sin(angle) * 30);
