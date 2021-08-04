@@ -957,11 +957,11 @@ function draw() {
   pop();
 
   push();
-  stroke(255);
+  stroke(64);
   for (var angle = 0; angle < TAU; angle += PI / 128) {
     line(
-      cos(angle) * 330 + 360,
-      sin(angle) * 330 + 360,
+      cos(angle) * 333 + 360,
+      sin(angle) * 333 + 360,
       (nextX = cos(angle) * 340 + 360),
       (nextY = sin(angle) * 340 + 360)
     );
@@ -994,7 +994,7 @@ function draw() {
   pop();
 
   push();
-  stroke(255);
+  stroke(64);
   noFill();
   for (var i = 0; i < 4; i++) {
     var angle = PI / 4 + (i * PI) / 2;
@@ -1202,6 +1202,7 @@ function draw() {
           circle(x2, y2, 3);
       }
     }
+    stroke(64);
     for (var distance = 0; distance <= 40; distance += 3) {
       for (var sign = -1; sign < 2; sign += 2) {
         line(40 - distance, 40 * sign + (distance * sign) / 8, -90, 170 * sign);
