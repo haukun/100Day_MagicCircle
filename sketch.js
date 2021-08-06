@@ -1,23 +1,43 @@
 var time = 0;
-var cCircle, cGlyph;
+var cCircle, cGlyph, cFire, cWater, cWind, cEarth;
+var aElement = [];
 function draw() {
   time += 0.005;
   background(0);
+  imageMode(CENTER);
 
   push();
   translate(360, 360);
   rotate(time);
-  image(cGlyph, -360, -360);
+  image(cGlyph, 0, 0);
   pop();
 
-  image(cCircle, 0, 0);
+  image(cCircle, 360, 360);
+
+  for (var i = 0; i < 4; i++) {
+    push();
+    var baseX = cos((TAU * i) / 4) * 310 + 360;
+    var baseY = sin((TAU * i) / 4) * 310 + 360;
+    translate(baseX, baseY);
+    rotate(-time * 2 + (TAU / 4) * i);
+    scale(abs(sin(time * 2 + (TAU / 8) * i)) ** 0.5, 1);
+    image(aElement[i], 0, 0);
+    pop();
+  }
 }
 
 function setup() {
   createCanvas(720, 720);
   cCircle = createGraphics(720, 720);
   cGlyph = createGraphics(720, 720);
-
+  cFire = createGraphics(62, 62);
+  cWater = createGraphics(62, 62);
+  cWind = createGraphics(62, 62);
+  cEarth = createGraphics(62, 62);
+  aElement.push(cWind);
+  aElement.push(cFire);
+  aElement.push(cWater);
+  aElement.push(cEarth);
   with (cCircle) {
     randomSeed(42);
     colorMode(HSB);
@@ -1314,14 +1334,55 @@ function setup() {
     }
     pop();
 
-    //  Fire circle
+    createElementalCircle();
+  }
+}
+
+function createBezierGlyph() {
+  with (cGlyph) {
+    randomSeed(42);
+
+    push();
+    stroke(255);
+    noFill();
+    for (angle = 0; angle < TAU; angle += PI / 64) {
+      push();
+      var baseX = cos(angle) * 310 + 360;
+      var baseY = sin(angle) * 310 + 360;
+      translate(baseX, baseY);
+      rotate(angle);
+
+      for (i = 0; i < 3; i++) {
+        var randomAngle = (int(random(6)) * PI) / 3;
+        var endX = cos(randomAngle) * 10;
+        var endY = sin(randomAngle) * 5;
+        var bezierAngle1 = (int(random(6)) * PI) / 3;
+        var controlX1 = cos(bezierAngle1) * 10;
+        var controlY1 = sin(bezierAngle1) * 5;
+        var bezierAngle2 = (int(random(6)) * PI) / 3;
+        var controlX2 = cos(bezierAngle2) * 10;
+        var controlY2 = sin(bezierAngle2) * 5;
+        bezier(0, 0, controlX1, controlY1, controlX2, controlY2, endX, endY);
+      }
+
+      pop();
+    }
+    pop();
+  }
+}
+
+function createElementalCircle() {
+  //  Fire circle
+  with (cFire) {
+    colorMode(HSB);
+
     push();
     fill(0);
     noStroke();
-    var baseX = cos((TAU * 1) / 4) * 310 + 360;
-    var baseY = sin((TAU * 1) / 4) * 310 + 360;
+    var baseX = 31;
+    var baseY = 31;
 
-    circle(baseX, baseY, 65);
+    circle(baseX, baseY, 62);
     drawingContext.clip();
 
     noFill();
@@ -1361,15 +1422,18 @@ function setup() {
       );
     }
     pop();
+  }
 
-    //  Water circle
+  //  Water circle
+  with (cWater) {
+    colorMode(HSB);
     push();
     fill(0);
     noStroke();
-    var baseX = cos((TAU * 2) / 4) * 310 + 360;
-    var baseY = sin((TAU * 2) / 4) * 310 + 360;
+    var baseX = 31;
+    var baseY = 31;
 
-    circle(baseX, baseY, 65);
+    circle(baseX, baseY, 62);
     drawingContext.clip();
 
     noFill();
@@ -1403,15 +1467,17 @@ function setup() {
       pop();
     }
     pop();
-
-    //  Wind circle
+  }
+  //  Wind circle
+  with (cWind) {
+    colorMode(HSB);
     push();
     fill(0);
     noStroke();
-    var baseX = cos(0) * 310 + 360;
-    var baseY = sin(0) * 310 + 360;
+    var baseX = 31;
+    var baseY = 31;
 
-    circle(baseX, baseY, 65);
+    circle(baseX, baseY, 62);
     drawingContext.clip();
     noFill();
     stroke(135, 50, 100);
@@ -1459,15 +1525,19 @@ function setup() {
       );
     }
     pop();
+  }
 
-    //  Earth circle
+  //  Earth circle
+  with (cEarth) {
+    colorMode(HSB);
+
     push();
     fill(0);
     noStroke();
-    var baseX = cos((TAU * 3) / 4) * 310 + 360;
-    var baseY = sin((TAU * 3) / 4) * 310 + 360;
+    var baseX = 31;
+    var baseY = 31;
 
-    circle(baseX, baseY, 65);
+    circle(baseX, baseY, 62);
     drawingContext.clip();
     rectMode(CENTER);
     noFill();
@@ -1493,37 +1563,6 @@ function setup() {
       translate(baseX + cos(shiftAngle) * 4, baseY + sin(shiftAngle) * 4);
       rotate(shiftAngle);
       rect(0, 0, 3, 1);
-      pop();
-    }
-    pop();
-  }
-}
-
-function createBezierGlyph() {
-  with (cGlyph) {
-    push();
-    stroke(255);
-    noFill();
-    for (angle = 0; angle < TAU; angle += PI / 64) {
-      push();
-      var baseX = cos(angle) * 310 + 360;
-      var baseY = sin(angle) * 310 + 360;
-      translate(baseX, baseY);
-      rotate(angle);
-
-      for (i = 0; i < 3; i++) {
-        var randomAngle = (int(random(6)) * PI) / 3;
-        var endX = cos(randomAngle) * 10;
-        var endY = sin(randomAngle) * 5;
-        var bezierAngle1 = (int(random(6)) * PI) / 3;
-        var controlX1 = cos(bezierAngle1) * 10;
-        var controlY1 = sin(bezierAngle1) * 5;
-        var bezierAngle2 = (int(random(6)) * PI) / 3;
-        var controlX2 = cos(bezierAngle2) * 10;
-        var controlY2 = sin(bezierAngle2) * 5;
-        bezier(0, 0, controlX1, controlY1, controlX2, controlY2, endX, endY);
-      }
-
       pop();
     }
     pop();
