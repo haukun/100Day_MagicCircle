@@ -1,6 +1,7 @@
 var time = 0;
-var cCircle, cGlyph, cFire, cWater, cWind, cEarth;
+var cCircle, cGlyph, cFire, cWater, cWind, cEarth, cConstellation, cCelestial;
 var aElement = [];
+
 function draw() {
   time += 0.005;
   background(0);
@@ -11,8 +12,20 @@ function draw() {
   rotate(time);
   image(cGlyph, 0, 0);
   pop();
-
-  image(cCircle, 360, 360);
+  
+  push();
+  translate(360,360);
+  rotate(-time*2);
+  image(cConstellation,0,0);
+  pop();
+  
+  push();
+  translate(360,360);
+  rotate(-time);
+  image(cCelestial,0,0);
+  pop();
+   
+  image(cCircle, 360,360);
 
   for (var i = 0; i < 4; i++) {
     push();
@@ -38,6 +51,8 @@ function setup() {
   aElement.push(cFire);
   aElement.push(cWater);
   aElement.push(cEarth);
+  cConstellation = createGraphics(200,200);
+  cCelestial = createGraphics(120,120);
   with (cCircle) {
     randomSeed(42);
     colorMode(HSB);
@@ -745,26 +760,8 @@ function setup() {
 
     //  Celestial Space
     push();
-    push();
-    fill(255);
-    stroke(75, 25, 100);
-    var starArray = [];
-    for (var distance = 65; distance < 100; distance += 5) {
-      for (
-        var angle = distance;
-        angle < TAU + distance;
-        angle += 0.1 + random(0.4) - distance * 0.0005
-      ) {
-        var x = cos(angle) * distance + 360;
-        var y = sin(angle) * distance + 360;
-        circle(x, y, 1);
-        starArray
-          .filter((e) => dist(e.x, e.y, x, y) < 8)
-          .forEach((e) => line(e.x, e.y, x, y));
-        starArray.push({ x: x, y: y });
-      }
-    }
-    pop();
+    createConstellation();
+
 
     //  Holoscope Space
     push();
@@ -881,70 +878,7 @@ function setup() {
 
     pop();
 
-    //  Sun Symbol
-    push();
-    fill(0);
-    stroke(15, 25, 100);
-    circle(360, 360, 80);
-
-    for (var angle = 0; angle < TAU; angle += 0.1) {
-      length = 4;
-      for (
-        var distance = 0;
-        distance < 40;
-        distance += length = (40 - distance) / 20 + random(1) + 1
-      ) {
-        line(
-          cos(angle) * distance + 360,
-          sin(angle) * distance + 360,
-          cos(angle + distance / 360) * (distance + length - 2) + 360,
-          sin(angle + distance / 360) * (distance + length - 2) + 360
-        );
-      }
-    }
-
-    for (var angle = PI / 2; angle < TAU - PI / 8; angle += PI / 24) {
-      line(
-        cos(angle) * 45 + 360,
-        sin(angle) * 45 + 360,
-        cos(angle) * 55 + 360,
-        sin(angle) * 55 + 360
-      );
-    }
-    pop();
-
-    //  Moon Symbol
-    push();
-    fill(0);
-    stroke(45, 25, 100);
-    beginShape();
-    for (var angle = -PI / 2; angle < PI; angle += 0.1) {
-      vertex(cos(angle) * 60 + 360, sin(angle) * 60 + 360);
-    }
-    for (var angle = PI; angle > -PI / 2; angle -= 0.1) {
-      vertex(cos(angle) * 50 + 350, sin(angle) * 50 + 350);
-    }
-    endShape(CLOSE);
-    drawingContext.clip();
-    var addAngle = 0;
-    for (var distance = -10; distance <= 10; distance += 2) {
-      for (
-        angle = PI;
-        angle > -PI / 2;
-        angle -= (addAngle = random(1) / 10) + 0.01
-      ) {
-        var adjustDistance =
-          55 + sin(((angle - PI) / (PI + PI / 2)) * PI) * distance;
-        line(
-          cos(angle) * adjustDistance + 355,
-          sin(angle) * adjustDistance + 355,
-          cos(angle + addAngle * 0.8) * adjustDistance + 355,
-          sin(angle + addAngle * 0.8) * adjustDistance + 355
-        );
-      }
-    }
-
-    pop();
+    createCelestial();
 
     pop();
 
@@ -1565,6 +1499,102 @@ function createElementalCircle() {
       rect(0, 0, 3, 1);
       pop();
     }
+    pop();
+  }
+}
+function createConstellation(){
+  with(cConstellation){
+    push();
+    colorMode(HSB);
+    fill(255);
+    randomSeed(42);
+    stroke(75, 25, 100);
+    var starArray = [];
+    for (var distance = 65; distance < 100; distance += 5) {
+      for (
+        var angle = distance;
+        angle < TAU + distance;
+        angle += 0.1 + random(0.4) - distance * 0.0005
+      ) {
+        var x = cos(angle) * distance + 100;
+        var y = sin(angle) * distance + 100;
+        circle(x, y, 1);
+        starArray
+          .filter((e) => dist(e.x, e.y, x, y) < 8)
+          .forEach((e) => line(e.x, e.y, x, y));
+        starArray.push({ x: x, y: y });
+      }
+    }
+    pop();
+  }
+}
+function createCelestial(){
+  with(cCelestial){
+    //  Sun Symbol
+    push();
+    colorMode(HSB);
+    fill(0);
+    stroke(15, 25, 100);
+    circle(360, 360, 80);
+
+    for (var angle = 0; angle < TAU; angle += 0.1) {
+      length = 4;
+      for (
+        var distance = 0;
+        distance < 40;
+        distance += length = (40 - distance) / 20 + random(1) + 1
+      ) {
+        line(
+          cos(angle) * distance + 60,
+          sin(angle) * distance + 60,
+          cos(angle + distance / 360) * (distance + length - 2) + 60,
+          sin(angle + distance / 360) * (distance + length - 2) + 60
+        );
+      }
+    }
+
+    for (var angle = PI / 2; angle < TAU - PI / 8; angle += PI / 24) {
+      line(
+        cos(angle) * 45 + 60,
+        sin(angle) * 45 + 60,
+        cos(angle) * 55 + 60,
+        sin(angle) * 55 + 60
+      );
+    }
+    pop();
+
+    //  Moon Symbol
+    push();
+    colorMode(HSB);
+    fill(0);
+    stroke(45, 25, 100);
+    beginShape();
+    for (var angle = -PI / 2; angle < PI; angle += 0.1) {
+      vertex(cos(angle) * 60 + 60, sin(angle) * 60 + 60);
+    }
+    for (var angle = PI; angle > -PI / 2; angle -= 0.1) {
+      vertex(cos(angle) * 50 + 50, sin(angle) * 50 + 50);
+    }
+    endShape(CLOSE);
+    drawingContext.clip();
+    var addAngle = 0;
+    for (var distance = -10; distance <= 10; distance += 2) {
+      for (
+        angle = PI;
+        angle > -PI / 2;
+        angle -= (addAngle = random(1) / 10) + 0.01
+      ) {
+        var adjustDistance =
+          55 + sin(((angle - PI) / (PI + PI / 2)) * PI) * distance;
+        line(
+          cos(angle) * adjustDistance + 55,
+          sin(angle) * adjustDistance + 55,
+          cos(angle + addAngle * 0.8) * adjustDistance + 55,
+          sin(angle + addAngle * 0.8) * adjustDistance + 55
+        );
+      }
+    }
+
     pop();
   }
 }
