@@ -1,36 +1,48 @@
 var time = 0;
-var cCircle, cGlyph, cFire, cWater, cWind, cEarth, cConstellation, cCelestial;
+var cCircle,
+  cGlyph,
+  cFire,
+  cWatefuncnd,
+  cEarth,
+  cConstellation,
+  cCelestial,
+  cExternal;
 var aElement = [];
-
 function draw() {
   time += 0.005;
   background(0);
   imageMode(CENTER);
 
+  image(cExternal, 360, 360);
+
+  push();
+  translate(360, 360);
+  rotate(time * 2);
+  image(cGlyph, 0, 0);
+  pop();
+
+  push();
+  translate(360, 360);
+  rotate(-time * 2);
+  image(cConstellation, 0, 0);
+  pop();
+
+  push();
+  translate(360, 360);
+  rotate(-time);
+  image(cCelestial, 0, 0);
+  pop();
+
   push();
   translate(360, 360);
   rotate(time);
-  image(cGlyph, 0, 0);
+  image(cCircle, 0, 0);
   pop();
-  
-  push();
-  translate(360,360);
-  rotate(-time*2);
-  image(cConstellation,0,0);
-  pop();
-  
-  push();
-  translate(360,360);
-  rotate(-time);
-  image(cCelestial,0,0);
-  pop();
-   
-  image(cCircle, 360,360);
 
   for (var i = 0; i < 4; i++) {
     push();
-    var baseX = cos((TAU * i) / 4) * 310 + 360;
-    var baseY = sin((TAU * i) / 4) * 310 + 360;
+    var baseX = cos((TAU * i) / 4 + time) * 310 + 360;
+    var baseY = sin((TAU * i) / 4 + time) * 310 + 360;
     translate(baseX, baseY);
     rotate(-time * 2 + (TAU / 4) * i);
     scale(abs(sin(time * 2 + (TAU / 8) * i)) ** 0.5, 1);
@@ -51,8 +63,9 @@ function setup() {
   aElement.push(cFire);
   aElement.push(cWater);
   aElement.push(cEarth);
-  cConstellation = createGraphics(200,200);
-  cCelestial = createGraphics(120,120);
+  cConstellation = createGraphics(200, 200);
+  cCelestial = createGraphics(120, 120);
+  cExternal = createGraphics(720, 720);
   with (cCircle) {
     randomSeed(42);
     colorMode(HSB);
@@ -762,7 +775,6 @@ function setup() {
     push();
     createConstellation();
 
-
     //  Holoscope Space
     push();
     noFill();
@@ -976,244 +988,7 @@ function setup() {
     }
     pop();
 
-    push();
-    stroke(64);
-    noFill();
-    for (var i = 0; i < 4; i++) {
-      var angle = PI / 4 + (i * PI) / 2;
-      push();
-      translate(cos(angle) * 420 + 360, sin(angle) * 420 + 360);
-      rotate(angle);
-      for (var distance = 45; distance > 0; distance -= 6) {
-        beginShape();
-        for (
-          var angle2 = PI + PI / 2;
-          angle2 < TAU + PI / 2;
-          angle2 += PI / 32
-        ) {
-          switch (i) {
-            case 0:
-              vertex(
-                asin(cos(angle2)) * distance,
-                atan(sin(angle2)) * distance
-              );
-              break;
-            case 1:
-              vertex(
-                atan(cos(angle2)) * distance * 2,
-                atan(sin(angle2)) * distance
-              );
-              break;
-            case 2:
-              vertex(
-                asin(cos(angle2)) * distance,
-                (asin(sin(angle2)) * distance) / 2
-              );
-              break;
-            case 3:
-              vertex(
-                atan(cos(angle2)) * distance * 2,
-                (asin(sin(angle2)) * distance) / 2
-              );
-              break;
-          }
-        }
-        endShape();
-      }
-      for (var offset = -22.5; offset < 24; offset += 3) {
-        var target = -offset / 35;
-        var target2 = target - (offset / abs(offset)) * 0.03;
-        var x1 = 0;
-        var y1 = asin(sin(PI + PI / 2)) * offset;
-        var x2 = -410 + cos(target2) * 350;
-        var y2 = sin(target2) * 350;
-        switch (i) {
-          case 0:
-            curve(200, 0, x1, y1, x2, y2, -100, 0);
-            var cx = curvePoint(200, x1, x2, -100, abs(offset) / 48 + 0.5);
-            var cy = curvePoint(0, y1, y2, 0, abs(offset) / 48 + 0.5);
-            var cx2 = curvePoint(200, x1, x2, -100, abs(offset) / 48 + 0.4);
-            var cy2 = curvePoint(0, y1, y2, 0, abs(offset) / 48 + 0.4);
-            var x3 = -410 + cos(target2 + 0.03) * 350;
-            var y3 = sin(target2 + 0.03) * 350;
-            var x4 = -410 + cos(target2 - 0.03) * 350;
-            var y4 = sin(target2 - 0.03) * 350;
-            var x5 = -410 + cos(target2 + 0.05) * 355;
-            var y5 = sin(target2 + 0.05) * 355;
-            var x6 = -410 + cos(target2 - 0.05) * 355;
-            var y6 = sin(target2 - 0.05) * 355;
-            curve(x2, y2, cx, cy, x3, y3, x2, y2);
-            curve(x2, y2, cx, cy, x4, y4, x2, y2);
-            curve(x2, y2, cx2, cy2, x5, y5, x2, y2);
-            curve(x2, y2, cx2, cy2, x6, y6, x2, y2);
-
-            circle(x2, y2, 3);
-            break;
-          case 1:
-            bezier(
-              0,
-              asin(sin(PI + PI / 2)) * offset,
-              -50,
-              (asin(sin(PI + PI / 2)) * offset) / 2,
-              -380 + cos(target) * 350,
-              sin(target) * 350,
-              -415 + cos(target2) * 350,
-              sin(target2) * 350
-            );
-            var bx = bezierPoint(
-              0,
-              -50,
-              -380 + cos(target) * 350,
-              -415 + cos(target2) * 350,
-              0.9
-            );
-            var by = bezierPoint(
-              asin(sin(PI + PI / 2)) * offset,
-              (asin(sin(PI + PI / 2)) * offset) / 2,
-              sin(target) * 350,
-              sin(target2) * 350,
-              0.9
-            );
-            var bx2 = bezierPoint(
-              0,
-              -50,
-              -380 + cos(target) * 350,
-              -415 + cos(target2) * 350,
-              0.7
-            );
-            var by2 = bezierPoint(
-              asin(sin(PI + PI / 2)) * offset,
-              (asin(sin(PI + PI / 2)) * offset) / 2,
-              sin(target) * 350,
-              sin(target2) * 350,
-              0.7
-            );
-
-            var cx1 = -415 + cos(target2) * 350;
-            var cy1 = sin(target2) * 350;
-            var cx2 = -415 + cos(target2) * 360;
-            var cy2 = sin(target2) * 360;
-            var x3 = -415 + cos(target2 + 0.02) * 350;
-            var y3 = sin(target2 + 0.02) * 350;
-            var x4 = -415 + cos(target2 - 0.02) * 350;
-            var y4 = sin(target2 - 0.02) * 350;
-            var x5 = -415 + cos(target2 + 0.04) * 350;
-            var y5 = sin(target2 + 0.04) * 350;
-            var x6 = -415 + cos(target2 - 0.04) * 350;
-            var y6 = sin(target2 - 0.04) * 350;
-
-            bezier(bx, by, cx1, cy1, cx2, cy2, x3, y3);
-            bezier(bx, by, cx1, cy1, cx2, cy2, x4, y4);
-            bezier(bx2, by2, bx2, by2, cx2, cy2, x5, y5);
-            bezier(bx2, by2, bx2, by2, cx2, cy2, x6, y6);
-            circle(-415 + cos(target2) * 350, sin(target2) * 350, 3);
-            break;
-          case 2:
-            line(x1, y1, x2, y2);
-            var angle = atan2(y2 - y1, x2 - x1) - PI;
-            line(
-              x2,
-              y2,
-              x2 + cos(angle + 0.2) * (30 - abs(offset)),
-              y2 + sin(angle + 0.2) * (30 - abs(offset))
-            );
-            line(
-              x2,
-              y2,
-              x2 + cos(angle - 0.2) * (30 - abs(offset)),
-              y2 + sin(angle - 0.2) * (30 - abs(offset))
-            );
-
-            push();
-            translate(
-              x2 + (cos(angle) * (30 - abs(offset))) / 1.5,
-              y2 + (sin(angle) * (30 - abs(offset))) / 1.5
-            );
-            rotate(angle + PI);
-            arc(
-              0,
-              0,
-              30 - abs(offset),
-              (30 - abs(offset)) / 2,
-              -PI / 4,
-              +PI / 4
-            );
-            pop();
-
-            circle(x2, y2, 3);
-            break;
-          case 3:
-            curve(
-              x1 + cos(target) * 90,
-              y1 + sin(target) * 90,
-              x1,
-              y1,
-              x2,
-              y2,
-              x2 - cos(target) * 50,
-              y2 - sin(target) * 50
-            );
-
-            var angle = atan2(y2 - y1, x2 - x1) - PI;
-            curve(
-              x2,
-              y2,
-              x2,
-              y2,
-              x2 + cos(angle + 0.2) * (30 - abs(offset)),
-              y2 + sin(angle + 0.2) * (30 - abs(offset)),
-              x2 + cos(angle) * -60,
-              y2 + sin(angle) * -60
-            );
-            curve(
-              x2,
-              y2,
-              x2,
-              y2,
-              x2 + cos(angle - 0.2) * (30 - abs(offset)),
-              y2 + sin(angle - 0.2) * (30 - abs(offset)),
-              x2 + cos(angle) * -60,
-              y2 + sin(angle) * -60
-            );
-
-            curve(
-              x2,
-              y2,
-              x2,
-              y2,
-              x2 + cos(angle + 0.6) * (20 - abs(offset)),
-              y2 + sin(angle + 0.6) * (20 - abs(offset)),
-              x2 + cos(angle) * -30,
-              y2 + sin(angle) * -30
-            );
-            curve(
-              x2,
-              y2,
-              x2,
-              y2,
-              x2 + cos(angle - 0.6) * (20 - abs(offset)),
-              y2 + sin(angle - 0.6) * (20 - abs(offset)),
-              x2 + cos(angle) * -30,
-              y2 + sin(angle) * -30
-            );
-            circle(x2, y2, 3);
-        }
-      }
-      stroke(64);
-      for (var distance = 0; distance <= 40; distance += 3) {
-        for (var sign = -1; sign < 2; sign += 2) {
-          line(
-            40 - distance,
-            40 * sign + (distance * sign) / 8,
-            -90,
-            170 * sign
-          );
-          circle(40 - distance, 40 * sign + (distance * sign) / 8, 2);
-        }
-      }
-      pop();
-    }
-    pop();
+    createExternalDomain();
 
     //  Outer Circle : District border
     push();
@@ -1502,8 +1277,8 @@ function createElementalCircle() {
     pop();
   }
 }
-function createConstellation(){
-  with(cConstellation){
+function createConstellation() {
+  with (cConstellation) {
     push();
     colorMode(HSB);
     fill(255);
@@ -1528,8 +1303,8 @@ function createConstellation(){
     pop();
   }
 }
-function createCelestial(){
-  with(cCelestial){
+function createCelestial() {
+  with (cCelestial) {
     //  Sun Symbol
     push();
     colorMode(HSB);
@@ -1595,6 +1370,250 @@ function createCelestial(){
       }
     }
 
+    pop();
+  }
+}
+
+function createExternalDomain() {
+  with (cExternal) {
+    colorMode(HSB);
+    push();
+    stroke(64);
+    noFill();
+    for (var i = 0; i < 4; i++) {
+      var angle = PI / 4 + (i * PI) / 2;
+      push();
+      translate(cos(angle) * 420 + 360, sin(angle) * 420 + 360);
+      rotate(angle);
+      for (var distance = 45; distance > 0; distance -= 6) {
+        beginShape();
+        for (
+          var angle2 = PI + PI / 2;
+          angle2 < TAU + PI / 2;
+          angle2 += PI / 32
+        ) {
+          switch (i) {
+            case 0:
+              vertex(
+                asin(cos(angle2)) * distance,
+                atan(sin(angle2)) * distance
+              );
+              break;
+            case 1:
+              vertex(
+                atan(cos(angle2)) * distance * 2,
+                atan(sin(angle2)) * distance
+              );
+              break;
+            case 2:
+              vertex(
+                asin(cos(angle2)) * distance,
+                (asin(sin(angle2)) * distance) / 2
+              );
+              break;
+            case 3:
+              vertex(
+                atan(cos(angle2)) * distance * 2,
+                (asin(sin(angle2)) * distance) / 2
+              );
+              break;
+          }
+        }
+        endShape();
+      }
+      for (var offset = -22.5; offset < 24; offset += 3) {
+        var target = -offset / 35;
+        var target2 = target - (offset / abs(offset)) * 0.03;
+        var x1 = 0;
+        var y1 = asin(sin(PI + PI / 2)) * offset;
+        var x2 = -410 + cos(target2) * 350;
+        var y2 = sin(target2) * 350;
+        switch (i) {
+          case 0:
+            curve(200, 0, x1, y1, x2, y2, -100, 0);
+            var cx = curvePoint(200, x1, x2, -100, abs(offset) / 48 + 0.5);
+            var cy = curvePoint(0, y1, y2, 0, abs(offset) / 48 + 0.5);
+            var cx2 = curvePoint(200, x1, x2, -100, abs(offset) / 48 + 0.4);
+            var cy2 = curvePoint(0, y1, y2, 0, abs(offset) / 48 + 0.4);
+            var x3 = -410 + cos(target2 + 0.03) * 350;
+            var y3 = sin(target2 + 0.03) * 350;
+            var x4 = -410 + cos(target2 - 0.03) * 350;
+            var y4 = sin(target2 - 0.03) * 350;
+            var x5 = -410 + cos(target2 + 0.05) * 355;
+            var y5 = sin(target2 + 0.05) * 355;
+            var x6 = -410 + cos(target2 - 0.05) * 355;
+            var y6 = sin(target2 - 0.05) * 355;
+            curve(x2, y2, cx, cy, x3, y3, x2, y2);
+            curve(x2, y2, cx, cy, x4, y4, x2, y2);
+            curve(x2, y2, cx2, cy2, x5, y5, x2, y2);
+            curve(x2, y2, cx2, cy2, x6, y6, x2, y2);
+
+            circle(x2, y2, 3);
+            break;
+          case 1:
+            bezier(
+              0,
+              asin(sin(PI + PI / 2)) * offset,
+              -50,
+              (asin(sin(PI + PI / 2)) * offset) / 2,
+              -380 + cos(target) * 350,
+              sin(target) * 350,
+              -415 + cos(target2) * 350,
+              sin(target2) * 350
+            );
+            var bx = bezierPoint(
+              0,
+              -50,
+              -380 + cos(target) * 350,
+              -415 + cos(target2) * 350,
+              0.9
+            );
+            var by = bezierPoint(
+              asin(sin(PI + PI / 2)) * offset,
+              (asin(sin(PI + PI / 2)) * offset) / 2,
+              sin(target) * 350,
+              sin(target2) * 350,
+              0.9
+            );
+            var bx2 = bezierPoint(
+              0,
+              -50,
+              -380 + cos(target) * 350,
+              -415 + cos(target2) * 350,
+              0.7
+            );
+            var by2 = bezierPoint(
+              asin(sin(PI + PI / 2)) * offset,
+              (asin(sin(PI + PI / 2)) * offset) / 2,
+              sin(target) * 350,
+              sin(target2) * 350,
+              0.7
+            );
+
+            var cx1 = -415 + cos(target2) * 350;
+            var cy1 = sin(target2) * 350;
+            var cx2 = -415 + cos(target2) * 360;
+            var cy2 = sin(target2) * 360;
+            var x3 = -415 + cos(target2 + 0.02) * 350;
+            var y3 = sin(target2 + 0.02) * 350;
+            var x4 = -415 + cos(target2 - 0.02) * 350;
+            var y4 = sin(target2 - 0.02) * 350;
+            var x5 = -415 + cos(target2 + 0.04) * 350;
+            var y5 = sin(target2 + 0.04) * 350;
+            var x6 = -415 + cos(target2 - 0.04) * 350;
+            var y6 = sin(target2 - 0.04) * 350;
+
+            bezier(bx, by, cx1, cy1, cx2, cy2, x3, y3);
+            bezier(bx, by, cx1, cy1, cx2, cy2, x4, y4);
+            bezier(bx2, by2, bx2, by2, cx2, cy2, x5, y5);
+            bezier(bx2, by2, bx2, by2, cx2, cy2, x6, y6);
+            circle(-415 + cos(target2) * 350, sin(target2) * 350, 3);
+            break;
+          case 2:
+            line(x1, y1, x2, y2);
+            var angle = atan2(y2 - y1, x2 - x1) - PI;
+            line(
+              x2,
+              y2,
+              x2 + cos(angle + 0.2) * (30 - abs(offset)),
+              y2 + sin(angle + 0.2) * (30 - abs(offset))
+            );
+            line(
+              x2,
+              y2,
+              x2 + cos(angle - 0.2) * (30 - abs(offset)),
+              y2 + sin(angle - 0.2) * (30 - abs(offset))
+            );
+
+            push();
+            translate(
+              x2 + (cos(angle) * (30 - abs(offset))) / 1.5,
+              y2 + (sin(angle) * (30 - abs(offset))) / 1.5
+            );
+            rotate(angle + PI);
+            arc(
+              0,
+              0,
+              30 - abs(offset),
+              (30 - abs(offset)) / 2,
+              -PI / 4,
+              +PI / 4
+            );
+            pop();
+
+            circle(x2, y2, 3);
+            break;
+          case 3:
+            curve(
+              x1 + cos(target) * 90,
+              y1 + sin(target) * 90,
+              x1,
+              y1,
+              x2,
+              y2,
+              x2 - cos(target) * 50,
+              y2 - sin(target) * 50
+            );
+
+            var angle = atan2(y2 - y1, x2 - x1) - PI;
+            curve(
+              x2,
+              y2,
+              x2,
+              y2,
+              x2 + cos(angle + 0.2) * (30 - abs(offset)),
+              y2 + sin(angle + 0.2) * (30 - abs(offset)),
+              x2 + cos(angle) * -60,
+              y2 + sin(angle) * -60
+            );
+            curve(
+              x2,
+              y2,
+              x2,
+              y2,
+              x2 + cos(angle - 0.2) * (30 - abs(offset)),
+              y2 + sin(angle - 0.2) * (30 - abs(offset)),
+              x2 + cos(angle) * -60,
+              y2 + sin(angle) * -60
+            );
+
+            curve(
+              x2,
+              y2,
+              x2,
+              y2,
+              x2 + cos(angle + 0.6) * (20 - abs(offset)),
+              y2 + sin(angle + 0.6) * (20 - abs(offset)),
+              x2 + cos(angle) * -30,
+              y2 + sin(angle) * -30
+            );
+            curve(
+              x2,
+              y2,
+              x2,
+              y2,
+              x2 + cos(angle - 0.6) * (20 - abs(offset)),
+              y2 + sin(angle - 0.6) * (20 - abs(offset)),
+              x2 + cos(angle) * -30,
+              y2 + sin(angle) * -30
+            );
+            circle(x2, y2, 3);
+        }
+      }
+      stroke(64);
+      for (var distance = 0; distance <= 40; distance += 3) {
+        for (var sign = -1; sign < 2; sign += 2) {
+          line(
+            40 - distance,
+            40 * sign + (distance * sign) / 8,
+            -90,
+            170 * sign
+          );
+          circle(40 - distance, 40 * sign + (distance * sign) / 8, 2);
+        }
+      }
+      pop();
+    }
     pop();
   }
 }
